@@ -32,9 +32,9 @@ you plan to use:
 
 | Provider | Where to get a free key | Notes |
 |---|---|---|
-| **Groq Cloud** (default) | https://console.groq.com/keys | Free tier, fast, hosted — easiest for the team to share. |
+| **OpenCode Zen** (default) | https://opencode.ai/auth | Free hosted models, e.g. `nemotron-3.5-lightning-free`. |
+| **Groq Cloud** | https://console.groq.com/keys | Free tier, fast, hosted. Note: Groq's model lineup changes over time — if you get a `model_not_found` error, check `console.groq.com` for current free model IDs and set `GROQ_MODEL` in `.env`. |
 | **Ollama** | n/a — runs locally | Install [Ollama](https://ollama.com), run `ollama pull llama3.1`, and make sure `ollama serve` is running. No API key needed. |
-| **OpenCode Zen** | https://opencode.ai/auth | Free hosted models. |
 
 ## 2. Running the scraper
 
@@ -105,7 +105,30 @@ Non-English storefronts (e.g. `de`, `fr`, `jp`) will mostly get filtered out
 by the LLM's English-only check, but you can still pass them if you want —
 worst case they just get dropped in step 2 above.
 
-## 5. Project layout
+## 5. When a site blocks scraping outright (e.g. G2)
+
+`web.py` first tries a plain HTTP request, and automatically retries with
+the same headless browser used for the App Store if that gets a
+403/406/429/503 response. Some sites — G2 among them — run Cloudflare/DataDome-class
+bot detection that still blocks a plain, non-stealth headless browser with a
+CAPTCHA challenge page. This tool deliberately does **not** try to defeat
+that (no fingerprint spoofing, no CAPTCHA solving, no proxies) — that's out
+of scope and very likely against the target site's Terms of Service. When
+this happens the command stops and prints the fallback command to run
+instead.
+
+**Manual fallback**: open the page yourself in a normal browser, copy the
+visible text of each review into a `.txt` file (e.g. under `data/manual/`),
+separating reviews with a line containing only `---`, then run:
+
+```bash
+uv run main.py --from-file data/manual/g2_wavetec.txt --source-url "https://www.g2.com/products/wavetec/reviews"
+```
+
+This reuses the exact same LLM filter/extract + CSV dedup steps as a normal
+scrape, so the same quality bar and no-duplicate-rows guarantee apply.
+
+## 6. Project layout
 
 ```
 main.py                  # CLI entry point
@@ -113,14 +136,15 @@ scraper/
   config.py              # LLM provider config (Groq / Ollama / OpenCode Zen)
   llm_client.py           # sends raw candidates to the LLM, parses results
   appstore.py             # Apple App Store scraping (Playwright)
-  web.py                  # generic review website scraping (requests + BeautifulSoup)
+  web.py                  # generic review website scraping (requests, falls back to Playwright if blocked)
+  manual.py               # loads teammate-pasted review text files (fallback for blocked sites)
   csv_store.py             # dedup + append to CSV
   pipeline.py              # ties the above together
 data/
   reviews.csv             # shared output — committed so the team stays in sync
 ```
 
-## 6. Adding a new site with a known structure
+## 7. Adding a new site with a known structure
 
 If you know a specific review site's HTML structure and the generic
 extractor in `web.py` isn't picking up its reviews well, add a small

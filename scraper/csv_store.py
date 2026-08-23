@@ -8,12 +8,18 @@ from pathlib import Path
 FIELDNAMES = ["reviewer", "rating", "review_text", "date", "source_url"]
 
 
+def _dedup_key(review: dict) -> tuple:
+    # CSV round-trips missing values as "" (never None), so normalize here
+    # too or every review missing a date/reviewer would look "new" every run.
+    return (review.get("reviewer") or "", review.get("date") or "", review.get("review_text") or "")
+
+
 def _existing_keys(csv_path: Path) -> set[tuple]:
     if not csv_path.exists():
         return set()
     with csv_path.open("r", newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        return {(row.get("reviewer"), row.get("date"), row.get("review_text")) for row in reader}
+        return {_dedup_key(row) for row in reader}
 
 
 def append_reviews(reviews: list[dict], csv_path: Path) -> int:
@@ -34,7 +40,7 @@ def append_reviews(reviews: list[dict], csv_path: Path) -> int:
             writer.writeheader()
 
         for review in reviews:
-            key = (review.get("reviewer"), review.get("date"), review.get("review_text"))
+            key = _dedup_key(review)
             if key in existing:
                 continue
             existing.add(key)

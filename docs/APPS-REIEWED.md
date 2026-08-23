@@ -7,3 +7,6 @@
 - [x] QLess: `https://apps.apple.com/us/app/qless/id1033286225`
 - [x] Skiplino: `https://apps.apple.com/us/app/skiplino/id1065862072`
 
+## Websites
+
+- [ ] Wavetec (G2): `https://www.g2.com/products/wavetec/reviews`

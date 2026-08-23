@@ -13,23 +13,74 @@ import re
 
 import requests
 from bs4 import BeautifulSoup
+from playwright.sync_api import sync_playwright
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 )
 REQUEST_TIMEOUT = 20
+PAGE_LOAD_TIMEOUT_MS = 30_000
 MIN_TEXT_LEN = 20
 MAX_TEXT_LEN = 3000
 MAX_CANDIDATES = 200
 
 REVIEW_HINT_RE = re.compile(r"review|comment|feedback|rating", re.IGNORECASE)
 
+BLOCKED_STATUS_CODES = {403, 406, 429, 503}
+# Standard Cloudflare/Akamai/PerimeterX challenge-page fingerprints — if these
+# show up even in a real-browser render, the site is actively fingerprinting
+# and blocking automation, not just rejecting a missing header.
+BLOCKED_PAGE_RE = re.compile(
+    r"just a moment|attention required|cf-browser-verification|"
+    r"pardon our interruption|needs to review the security|checking your browser|captcha",
+    re.IGNORECASE,
+)
 
-def fetch_html(url: str) -> str:
+
+class BlockedError(Exception):
+    """Raised when a site blocks both the plain HTTP fetch and a real
+    headless-browser render. We deliberately stop here rather than escalating
+    to fingerprint spoofing, CAPTCHA solving, or proxies — see README."""
+
+
+def _looks_blocked(html: str) -> bool:
+    return bool(BLOCKED_PAGE_RE.search(html))
+
+
+def _fetch_requests(url: str) -> str:
     resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=REQUEST_TIMEOUT)
     resp.raise_for_status()
     return resp.text
+
+
+def _fetch_playwright(url: str) -> str:
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        try:
+            page = browser.new_page(user_agent=USER_AGENT)
+            page.goto(url, wait_until="networkidle", timeout=PAGE_LOAD_TIMEOUT_MS)
+            return page.content()
+        finally:
+            browser.close()
+
+
+def fetch_html(url: str) -> str:
+    """Fetch `url`, falling back to a real headless browser if a plain HTTP
+    request gets blocked. Raises BlockedError if the site blocks that too."""
+    try:
+        html = _fetch_requests(url)
+        if not _looks_blocked(html):
+            return html
+    except requests.exceptions.HTTPError as exc:
+        if exc.response.status_code not in BLOCKED_STATUS_CODES:
+            raise
+
+    print(f"  [web] plain request was blocked, retrying {url} with a headless browser...")
+    html = _fetch_playwright(url)
+    if _looks_blocked(html):
+        raise BlockedError(url)
+    return html
 
 
 def _looks_like_review_container(tag) -> bool:
