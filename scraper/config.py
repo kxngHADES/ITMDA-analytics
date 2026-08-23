@@ -10,6 +10,8 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
+from openai import OpenAI
+
 
 @dataclass(frozen=True)
 class ProviderConfig:
@@ -74,3 +76,12 @@ def resolve_provider(name: str | None = None) -> tuple[ProviderConfig, str, str 
         api_key = "not-needed"
 
     return provider, model, api_key
+
+
+def build_client(provider_name: str | None = None, model: str | None = None) -> tuple[OpenAI, str]:
+    """Resolve a provider and return a ready-to-use OpenAI-compatible client + model name."""
+    provider, resolved_model, api_key = resolve_provider(provider_name)
+    if model:
+        resolved_model = model
+    client = OpenAI(base_url=provider.base_url, api_key=api_key)
+    return client, resolved_model

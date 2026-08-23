@@ -9,12 +9,11 @@ is really a review of the app and to pull out the four fields we store.
 from __future__ import annotations
 
 import json
-import re
 from typing import Any
 
-from openai import OpenAI
-
-from scraper.config import resolve_provider
+from scraper.config import build_client
+from scraper.json_utils import extract_json_array
+from scraper.llm_call import chat_completion
 
 BATCH_SIZE = 8
 
@@ -39,34 +38,12 @@ Rules for the object:
 - "review_text": the cleaned review text (strip HTML, extra whitespace), in English.
 - "date": the review date as a string in YYYY-MM-DD format if available, otherwise null.
 
-Return raw JSON only. No markdown fences, no commentary."""
-
-
-def _client(provider_name: str | None, model: str | None) -> tuple[OpenAI, str]:
-    provider, resolved_model, api_key = resolve_provider(provider_name)
-    if model:
-        resolved_model = model
-    client = OpenAI(base_url=provider.base_url, api_key=api_key)
-    return client, resolved_model
+Escape any double-quote characters that appear inside a string value (e.g. \\") \
+so the output is valid JSON. Return raw JSON only. No markdown fences, no commentary."""
 
 
 def _chunk(items: list[Any], size: int) -> list[list[Any]]:
     return [items[i : i + size] for i in range(0, len(items), size)]
-
-
-def _extract_json_array(text: str) -> list[Any]:
-    """Best-effort extraction of a JSON array from an LLM response.
-
-    Some providers ignore "no markdown fences" and wrap the answer in
-    ```json ... ``` anyway, so strip that before parsing.
-    """
-    text = text.strip()
-    text = re.sub(r"^```(?:json)?", "", text).strip()
-    text = re.sub(r"```$", "", text).strip()
-    match = re.search(r"\[.*\]", text, re.DOTALL)
-    if match:
-        text = match.group(0)
-    return json.loads(text)
 
 
 def filter_and_extract(
@@ -83,21 +60,20 @@ def filter_and_extract(
     if not raw_items:
         return []
 
-    client, resolved_model = _client(provider_name, model)
+    client, resolved_model = build_client(provider_name, model)
     results: list[dict] = []
 
     for batch in _chunk(raw_items, BATCH_SIZE):
-        response = client.chat.completions.create(
-            model=resolved_model,
-            temperature=0,
+        content = chat_completion(
+            client,
+            resolved_model,
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": json.dumps(batch, ensure_ascii=False)},
             ],
-        )
-        content = response.choices[0].message.content or "[]"
+        ) or "[]"
         try:
-            parsed = _extract_json_array(content)
+            parsed = extract_json_array(content)
         except (json.JSONDecodeError, AttributeError):
             print(f"  [llm] warning: could not parse model output, skipping batch:\n{content[:300]}")
             continue
