@@ -1,0 +1,14 @@
+[project]
+name = "analysis-dir"
+version = "0.1.0"
+description = "Scrapes app reviews (Apple App Store + review sites), filters/extracts them with an LLM, and appends them to a CSV for data analysis."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "lxml>=6.1.2",
+    "openai>=3.3.1",
+    "playwright>=1.62.0",
+    "python-dotenv>=1.2.3",
+    "requests>=2.34.2",
+]
