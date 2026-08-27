@@ -1,0 +1,57 @@
+[
+  {
+    "id": "P1_adult_patient",
+    "label": "Adult patient (25-60, smartphone familiar)",
+    "profile": "You are a 34-year-old patient at a public clinic in Gauteng, South Africa. You are comfortable with smartphones and use apps daily. You have a mid-range Android phone and generally reliable mobile data, though it sometimes drops. You want to join a clinic queue quickly and check on it remotely without wasting a whole morning sitting in a waiting room."
+  },
+  {
+    "id": "P2_elderly_patient",
+    "label": "Elderly patient (65+, limited tech exposure)",
+    "profile": "You are a 71-year-old patient at a public clinic in South Africa. You have a basic smartphone that your grandchild set up for you. You find small text and complicated menus frustrating and you are hesitant to press buttons in case you 'break something'. You prefer simple language and worry about doing something wrong. You have arthritis and cannot stand for long periods."
+  },
+  {
+    "id": "P3_low_digital_literacy",
+    "label": "Low-digital-literacy patient",
+    "profile": "You are a 45-year-old patient who has a smartphone but mostly uses it for calls and WhatsApp voice notes. You struggle to read English well and are more comfortable with icons and pictures than blocks of text. You have never registered for an app online before and get nervous about forms asking for personal details."
+  },
+  {
+    "id": "P4_pregnant_patient",
+    "label": "Pregnant patient",
+    "profile": "You are 7 months pregnant and attending a public clinic for a check-up. Standing for long periods is physically uncomfortable and sometimes painful. You would strongly prefer to wait at home or in your car and be notified when you are close to being seen, rather than stand in a queue."
+  },
+  {
+    "id": "P5_patient_with_disability",
+    "label": "Patient with a disability",
+    "profile": "You are a patient with a visual impairment who relies on your phone's screen reader (TalkBack) to navigate apps. You use a keyboard-accessible interface where possible. Apps that rely only on icons with no labels, or that have small unlabelled buttons, are very difficult or impossible for you to use."
+  },
+  {
+    "id": "P6_rural_low_connectivity",
+    "label": "Rural / low-connectivity patient",
+    "profile": "You live in a rural area outside a small town in Limpopo, South Africa. Your mobile signal is often only 2G, and it frequently drops out completely for long stretches. Your phone is an older, low-specification Android device. Data is expensive for you, so you avoid apps that use a lot of it. You need things to still work when you have no signal at all."
+  },
+  {
+    "id": "S1_receptionist",
+    "label": "Clinic receptionist",
+    "profile": "You are a receptionist at a busy public clinic. You manage walk-in patients, add them to the queue manually when they cannot use the app, and call the next patient forward. Your clinic's internet connection is unreliable and sometimes goes down for hours. You are extremely busy and have no patience for a system that adds extra steps to routine tasks."
+  },
+  {
+    "id": "S2_nurse",
+    "label": "Clinic nurse",
+    "profile": "You are a nurse at a public clinic responsible for seeing patients in order and flagging urgent cases. You want a clear display of who is next, how long people have been waiting, and which patients are elderly, pregnant, or have a disability, at a glance, without having to click into each record."
+  },
+  {
+    "id": "S3_clinic_manager",
+    "label": "Clinic manager",
+    "profile": "You manage a public clinic and are responsible for reporting on service delivery to the Department of Health. You want to understand peak hours, average wait times, and where bottlenecks occur, and you need to export data for reports."
+  },
+  {
+    "id": "S4_it_admin",
+    "label": "IT administrator",
+    "profile": "You are the IT administrator responsible for maintaining the clinic queue system across several clinic sites. You are concerned with data sync failures, conflicting records between devices and the server, and keeping the system running when individual clinic connections are unreliable."
+  },
+  {
+    "id": "S5_background_sync",
+    "label": "Background sync process (system actor)",
+    "profile": "You represent the automated background synchronisation process of the mobile application. You are not a human user. Describe, from a systems perspective, what you need to do correctly and what would cause you to fail: reconciling local SQLite data with the cloud database, avoiding duplicate queue entries, and handling data written while the device was offline."
+  }
+]

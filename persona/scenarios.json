@@ -1,0 +1,17 @@
+[
+  {
+    "id": "join_queue",
+    "label": "Joining a queue for the first time",
+    "prompt": "You are opening a digital clinic queue app for the first time to join the queue at your local clinic. Walk through, in your own words, what you expect to see, what would make you confident you had successfully joined the queue, and anything that would confuse, worry, or stop you at this step. Be specific and realistic based on who you are."
+  },
+  {
+    "id": "check_status_offline",
+    "label": "Checking queue position after losing signal",
+    "prompt": "You joined the queue earlier and left the clinic to wait elsewhere. You now open the app to check your position, but your phone has no internet connection right now. Describe what you expect the app to show you, what would reassure you that your place in the queue is still safe, and what would make you distrust or abandon the app in this moment."
+  },
+  {
+    "id": "respond_to_call",
+    "label": "Responding to a call notification",
+    "prompt": "The app or a message notifies you that it is almost your turn or that you are being called now. Describe how you expect to be notified given your circumstances (what channel, what it should say), what you would do next, and what could cause you to miss being called or fail to respond in time."
+  }
+]
