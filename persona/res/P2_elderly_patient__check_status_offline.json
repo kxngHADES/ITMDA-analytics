@@ -1,0 +1,31 @@
+{
+  "persona_id": "P2_elderly_patient",
+  "persona_label": "Elderly patient (65+, limited tech exposure)",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:26:16.723617+00:00",
+  "success": true,
+  "response_text": "### What the app shows me right now (offline)\n\nI tap the app icon, and since my phone has no internet, the screen stays blank for a moment, then a muted, grayish screen appears. It says something like \"No internet connection\" in small letters at the top, and below that, a faded version of my queue number — maybe \"Position 14\" — but it's not bright or clear. The menu buttons at the bottom are dimmed, and I can tell the app isn't loading anything new. Because my grandchild set the phone up, the font is the default size, and the gray text against the white screen feels a bit blurry to me without my reading glasses. I worry for a second that I've been \"disconnected\" from the queue and will have to start all over, but the app doesn't kick me out or ask for my details again. It just sits there, waiting.\n\n### What would reassure me that my place is still safe\n\nIf the app, even offline, showed a simple, bold message near the top in large, high-contrast text — something like:  \n**\"You're still in the queue. Position 14. The clinic has your spot. Tap once when you have internet to update.\"**  \n\nThat would calm me instantly. I wouldn't need to press multiple buttons or figure out new menus. Maybe there's a single, wide button at the bottom that says \"Check again\" with plenty of space around it, so my arthritic fingers can tap without worrying I'll accidentally press something else. The knowledge that my position is cached on the phone and won't disappear, combined with the simple instruction to just wait for a connection, would make me feel secure. I'd close the app, go back to waiting, and feel confident I'm not going to lose my turn.\n\n### What would make me distrust or abandon the app in this moment\n\nIf the screen fills with technical jargon I don't understand — something like \"ERROR 404: Connection Timeout. Queue session expired. Please re-register at the clinic.\" — I'd panic. I'd worry I've lost my place and will have to stand in the hot queue all over again. \n\nIf the app automatically logs me out, wipes my queue number, or forces me to re-enter my name and ID using tiny fields I have to zoom in on, I'd feel frustrated and treated like I'm tech‑savvy when I'm not. \n\nA full‑screen pop‑up with small X buttons, \"OK\" prompts that disappear quickly, or a \"Refresh\" button that spins forever without result would make me feel like the app is working against me. Given my fear of \"breaking something,\" if pressing any button feels like it might kick me out or delete my spot, I'd simply close the app, decide it's \"not for me,\" and go back to the clinic the old‑fashioned way. I'd tell my grandchild it was too confusing, and we'd stop using it altogether.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1943,
+    "prompt_tokens": 163,
+    "total_tokens": 2106,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1439,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

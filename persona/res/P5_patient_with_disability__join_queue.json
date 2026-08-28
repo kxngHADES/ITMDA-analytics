@@ -1,0 +1,31 @@
+{
+  "persona_id": "P5_patient_with_disability",
+  "persona_label": "Patient with a disability",
+  "scenario_id": "join_queue",
+  "scenario_label": "Joining a queue for the first time",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:55:07.912114+00:00",
+  "success": true,
+  "response_text": "### Opening the App (First Launch)\n\nI locate the app icon on my home screen. With TalkBack on, I hear the app name announced—something like \"ClinicQueue, double-tap to open.\" If the icon lacks a content description, TalkBack simply says \"Button,\" and I have no idea what it is. Assuming it's properly labeled, the app launches.\n\n### The First Screen\n\nThe app opens to a welcome or login screen. I expect:\n- A clear, announced heading, e.g., \"Welcome to ClinicQueue\"\n- Two properly labeled buttons: \"Sign in\" and \"Continue as guest\"\n- Edit text fields for username/phone if signing in, each with TalkBack-readable labels and appropriate keyboard focus\n- A \"Continue\" or \"Start\" button that’s large enough for reliable targeting and has a visible focus ring (keyboard-accessible)\n\nIf the screen says \"Welcome\" but the only way forward is an unlabeled icon that looks like a person or a gear, I’m stuck immediately. I need words, not pictures.\n\n### Joining the Queue\n\nAfter login (or as a guest), I’m taken to the main screen. My goal: join the queue for my local clinic. I expect to find:\n- A clearly labeled button or link, announced by TalkBack as something like \"Join queue for [Clinic Name], double-tap to activate\"\n- Alternatively, a list of clinics where each item is fully labeled (e.g., \"General Practitioners, Randwick. Double-tap to select\")\n- Once I select my clinic, a \"Join queue\" button that’s accessible\n\nIf the button to join is just a generic \"Submit\" or, worse, a queue icon with no content description, TalkBack will read just \"Button\" or \"Icon.\" I tap it, nothing happens (or I hear a generic sound), and I have no feedback whether it worked, what clinic I’m joining, or if I need to pick a location first.\n\n### What Confidence Looks Like\n\nI feel confident I’ve joined the queue when TalkBack announces a clear, spoken result after I activate the button. Examples:\n- \"You are now number 7 in the queue at General Practitioners, Randwick. Estimated wait time: 25 minutes.\"\n- \"Queue joined successfully. You’ll receive a notification when it’s your turn.\"\n- A persistent on-screen banner that TalkBack re-announces when I navigate back to it: \"You are in the queue. Position: 3. Estimated wait: 12 minutes.\"\n\nThe key is that the information is **announced**, not just displayed visually. If it’s only on screen as text with no TalkBack announcement, I don’t know it’s there.\n\n### What Would Confuse, Worry, or Stop Me\n\n1. **Unlabeled icon-only buttons:** If \"Join queue\" is a small line-drawing of a person and a number, with no content description, TalkBack says \"Button\" or \"Double-tap to activate\" without saying *what* the button does. I have no way to know if I’m joining a queue, logging out, or deleting the app.\n\n2. **No focus indicator or keyboard trap:** If I’m tabbing through the screen with a keyboard or switch device, and there’s no visible focus ring, or if tabbing cycles me into an area from which I can’t exit without closing the app, that’s a hard stop.\n\n3. **Visual-only confirmation:** After tapping what I think is \"Join queue,\" if the only feedback is a brief flash of green text that says \"You're in!\" with no TalkBack announcement, I assume nothing happened. I might tap again, panic, or close the app.\n\n4. **CAPTCHA or image-based verification without an accessible alternative:** If the app says \"Prove you're not a robot\" with a set of images I’m asked to select, and there’s no text alternative or audio option, I’m blocked entirely.\n\n5. **Vague error messages:** If nothing happens and TalkBack reads something like \"Error 404\" or \"Something went wrong\" without context—no suggestion to check my connection, re-select a clinic, or try again—I’m left guessing. I may assume the app is broken or that I did something wrong, which creates unnecessary anxiety.\n\n6. **Small hit targets:** Buttons or list items that are tightly packed, requiring precise tapping. On a touch screen, I might miss and activate the wrong item. On keyboard navigation, if focus jumps unpredictably or skips elements, I can’t reliably reach the button I need.\n\n### Bottom Line\n\nI walk into this app hoping for a clean, labeled, screen-reader-friendly flow: app name announced → login or guest start → clearly labeled \"Join queue\" for my clinic → TalkBack confirms my position and estimated wait. If at any point I hear only \"Button,\" \"Icon,\" or nothing at all after I tap, or if the only feedback is visual without speech, I lose confidence fast. I’ll either try once more, look for a help/settings section, or abandon the attempt and call the clinic directly. Accessibility isn't a nice-to-here—it’s the difference between joining my queue or being excluded from it.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1993,
+    "prompt_tokens": 151,
+    "total_tokens": 2144,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 979,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

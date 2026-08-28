@@ -1,0 +1,31 @@
+{
+  "persona_id": "P3_low_digital_literacy",
+  "persona_label": "Low-digital-literacy patient",
+  "scenario_id": "respond_to_call",
+  "scenario_label": "Responding to a call notification",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:41:12.504452+00:00",
+  "success": true,
+  "response_text": "**How you'd expect to be notified:**\n\n- **Channel:** A phone call to your mobile, or a WhatsApp voice note from the clinic. If it comes through an app, it should arrive as a simple, icon‑based alert (large, high‑contrast symbol like a person silhouette with a clock) rather than a pop‑up full of text.  \n- **What it should say:** Minimal or no English reading required. If there’s text, it’s big‑font, high‑contrast, and paired with a clear pictogram (e.g., “Your turn” with a waving hand icon). If it’s audio, a calm voice says something like: *\"Your turn is now\"* or *\"We are calling you, please come forward.\"* No personal‑detail forms or long explanations at this stage.\n\n**What you would do next:**\n1. Hear the ring or voice note.  \n2. Pick up the phone (if it’s a call) or open/listen to the WhatsApp voice note.  \n3. If the alert is an icon on screen, tap it or follow the simple visual prompt (e.g., a “Next” arrow).  \n4. Head to the clinic/counter or follow any very short instruction (e.g., “Go to room 3”).  \n5. Keep the phone nearby, on audible volume, and charged so you don’t miss the next alert.\n\n**What could cause you to miss being called or fail to respond in time:**\n- Phone on silent, vibrate‑only, or “Do Not Disturb” mode.  \n- Phone buried in a bag, pocket, or another room.  \n- Notifications turned off for the clinic’s call or WhatsApp chat.  \n- Not recognizing the icon or voice (especially if English text appears and you’re unsure what to do).  \n- Battery dead or phone turned off.  \n- Feeling nervous about calls/forms and instinctively letting the call go to voicemail or ignoring the message.  \n- Multiple notifications competing for attention, making this one easy to overlook.  \n\nThe goal is a **familiar, low‑text, voice‑or‑icon‑driven alert** that fits your current phone habits, so you can respond quickly without needing to read instructions or fill out forms right away.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 2063,
+    "prompt_tokens": 143,
+    "total_tokens": 2206,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1728,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

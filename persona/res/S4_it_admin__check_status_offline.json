@@ -1,0 +1,31 @@
+{
+  "persona_id": "S4_it_admin",
+  "persona_label": "IT administrator",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:40:45.806199+00:00",
+  "success": true,
+  "response_text": "### (a) What the app should show you\nAs an IT admin, I don't expect a naive \"spinning wheel\" or a dead-end error. I expect the app to gracefully fall back to **local cached state** and surface it clearly:\n\n- Your assigned ticket/position number (e.g., *\"You are #14 in queue\"*)\n- A **timestamp** of when that position was last confirmed by the server (e.g., *\"Last synced: 2:12 PM\"*)\n- An explicit offline indicator (\"Working offline – position preserved locally\")\n- If the system uses idempotent ticket assignment, the same ticket ID should appear regardless of connectivity, with a note that the spot is held while the app syncs when connection returns.\n\nIdeally the UI shows something like:  \n`#14 (last confirmed 2:12 PM) · Offline · Will auto-sync when online`\n\n### (b) What would reassure you your place is safe\nTrust hinges on **state persistence** and **sync transparency**. I’d feel secure if:\n\n- The position is stored in a **local database** (SQLite/Realm/etc.) that survives app restarts and airplane-mode toggles, then queued for background sync when the network returns.\n- There’s a clear **\"last successful sync\"** timestamp, and the app explicitly says the spot is held *until* the server acknowledges it—not just \"maybe\" held.\n- Re-entering the app after a connection drop resumes exactly where I left off, without asking me to re-join or re-authenticate.\n- The ticket/position number is **globally unique and immutable** for my session, so even if sync fails, the server can’t accidentally assign my spot to someone else or overwrite it with a stale cache.\n- Optional but powerful: a \"safe until\" time or TTL note (e.g., *\"Position held until 3:00 PM if offline\"*), which is standard in well-designed queue systems with unreliable client connectivity.\n\n### (c) What would make you distrust or abandon the app\nRed flags that trigger immediate abandonment, especially from someone who knows how this stuff should work:\n\n- **Position resets or vanishes** when offline (\"Joining queue...\"), forcing me to start over and risk losing my original spot.\n- **No offline state preserved**—the app crashes, returns to a login screen, or shows a generic \"No internet connection. Try again.\" without any indication that my earlier position existed locally.\n- **Duplicate or conflicting ticket numbers**—e.g., the app shows #14 offline, but the server later assigns me #22 upon reconnect, or worse, two different positions appear depending on timing.\n- **Silent data loss**—the app looks like it worked, but when I get back inside, my spot is gone and I’m told to \"check in again.\"\n- **No sync status indicator**—if I can’t tell whether the app is using stale local data, pending sync, or live server data, I can’t trust the accuracy of my position.\n- **As an admin, the killer is seeing no evidence of conflict resolution or idempotency logic.** If toggling airplane mode causes the position to flicker, reset, or generate a new ticket each time, I’d assume the system has race conditions or broken offline semantics and uninstall immediately.\n\nBottom line: I’ll stay if the app treats my queue position as **persistent, locally-cached state with a clear sync promise**. I’ll leave if it treats connectivity as a prerequisite for *existence* rather than a channel for *updates*.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1793,
+    "prompt_tokens": 133,
+    "total_tokens": 1926,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1181,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

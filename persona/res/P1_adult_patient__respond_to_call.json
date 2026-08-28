@@ -1,0 +1,31 @@
+{
+  "persona_id": "P1_adult_patient",
+  "persona_label": "Adult patient (25-60, smartphone familiar)",
+  "scenario_id": "respond_to_call",
+  "scenario_label": "Responding to a call notification",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:16:11.018342+00:00",
+  "success": true,
+  "response_text": "### How You'd Expect to Be Notified\n\n**Primary channel:** Push notification via the clinic’s official mobile app (pop-up banner/sound, even when the app is running in the background)  \n**Backup channel:** SMS to your phone number on file (works on any network, no data required)  \n**Content of notification:**  \n> *\"Gauteng Clinic: You're next! Please proceed to the consultation area. Your ticket: T-#8821. Show this at Window 2.\"*  \n> *(If you're already in the queue or have checked in earlier, it may read: \"You're almost up – head to the waiting area.\")*  \n> Notifications are concise, action-oriented, and include your ticket number so you can confirm it's yours without guessing.\n\n**Why this mix:**  \n- Push notifications give you rich context (ticket number, direction, clinic name) and work instantly when your phone has data or Wi-Fi.  \n- SMS is the fail-safe: it goes through on basic signal, doesn't consume your data bundle, and reaches you even if your app is closed, the phone is locked, or mobile data drops mid-notification.  \n- Both channels are free, no subscription required, and tied to the clinic’s existing patient registration system.\n\n---\n\n### What You’d Do Next\n\n1. **Immediately check the notification** – glance at the screen; the ticket number confirms it’s yours.  \n2. **If you’re already at the clinic:** Head straight to the indicated window/area (e.g., Window 2 for general consultation, Pharmacy for scripts, etc.).  \n3. **If you’re en route or elsewhere:** Open the app or check the SMS, estimate travel time, and proceed. Most apps also show a \"remaining wait time\" or \"queue position\" update so you can decide whether to rush or grab a coffee first.  \n4. **Confirm arrival** – tap \"I'm here\" in the app (if available) or simply check in at the reception desk/kiosk. This updates the system and prevents double‑calling.  \n5. **If no notification arrives** – after 5–10 minutes of waiting past your expected turn, check the app’s queue screen, refresh, or ask at the front desk for your status.\n\n---\n\n### What Could Cause You to Miss Being Called or Fail to Respond in Time\n\n| Reason | How It Breaks the Flow |\n|--------|-----------------------|\n| **Phone on silent / Do Not Disturb** | Push sound/vibration suppressed; SMS still arrives but might be missed if screen is off or you’re in a noisy area. |\n| **App notifications disabled or muted** | No pop-up, no badge icon; you’d only see the alert if you manually open the app. |\n| **Mobile data drops exactly when the call goes out** | Push notification stalls or delays; SMS may still go through, but if you have no signal at all, neither reaches you. |\n| **Battery dead or phone turned off** | Neither channel works unless you charge/turn on before arriving. |\n| **Notification arrives while you’re in a dead zone / poor coverage** (e.g., underground parking, rural leg of commute) | App can’t deliver push; SMS may queue and arrive late once signal returns. |\n| **Clinic system glitch / call not transmitted** | The queue computer thinks it called you, but the backend fails to push/SMS you. Rare, but happens in overburdened public clinics. |\n| **You don’t check the phone promptly** | Notifications auto-dismiss after a few seconds/minutes; if you look up 15 min later, the alert is gone. |\n| **Language or formatting confusion** | If the ticket number or clinic name is truncated or displayed in an unfamiliar script, you might hesitate or go to the wrong window. |\n| **Shared phone / family member’s device** | If the app/SMS is linked to a number a relative usually uses, you might not get the alert. |\n\n### Quick Mitigation Tips (for you, given your setup)\n- Keep app notifications **enabled** and set your phone to **\"priority only\"** during clinic hours, or allow the clinic app to bypass DND.  \n- Ensure **SMS is active** on your line; it’s the most reliable fallback.  \n- Keep **at least 15% battery** or a power bank handy for morning clinic trips.  \n- Periodically **open the app** while waiting to sync queue position, especially if data has been spotty.  \n- Save the clinic’s **direct phone number** in your contacts so you can call the queue desk if notifications go silent.\n\nThis setup balances speed, your tech comfort, and the reality of South African public clinic infrastructure—getting you in and out with minimal morning downtime.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1723,
+    "prompt_tokens": 151,
+    "total_tokens": 1874,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 767,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

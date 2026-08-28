@@ -1,0 +1,31 @@
+{
+  "persona_id": "P4_pregnant_patient",
+  "persona_label": "Pregnant patient",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:48:29.497576+00:00",
+  "success": true,
+  "response_text": "**What you expect the app to show:**  \nSince you left the physical queue but kept the app running, it should display your **last cached position** (e.g., \"You are #14 in queue, estimated wait 40 minutes\") with a clear timestamp of when that data was saved. The screen should load offline without demanding an immediate internet connection, and may show a \"holding your spot\" or \"remote wait\" indicator. Given your pregnancy, the display might subtly note your priority status, but the core expectation is a stable, unchanging readout that confirms the clinic still holds your place even though you’re waiting from your car or home.\n\n**What would reassure you your place is safe:**  \n- A label such as *\"Your spot is reserved remotely\"* or *\"Position held until notified\"*  \n- An explicit confirmation that leaving the physical line doesn’t forfeit your place, especially with a medical priority flag  \n- The ability to set a notification trigger (e.g., \"alert me when I’m #3\") that works offline once the app regains connectivity  \n- Clear terms that your queue position is tied to your account/token, not your physical presence in the waiting room  \n\n**What would make you distrust or abandon the app in this moment:**  \n- The app showing *\"Position lost\"* or forcing you to re‑take a number because you stepped away from the desk  \n- No offline cache: the app won’t display anything without live internet, or it crashes/forces a refresh that erases your spot  \n- Automatic spot expiry after a short inactivity timer, with no option to extend or hold remotely  \n- No clarity or setting for remote waiting, or the app acting as if you’ve forfeited your place simply because you’re not in the waiting room  \n- Having to return to the clinic in person just to keep your position, defeating the purpose of the app altogether  \n\nIn short: you’d feel secure if the app treats your queue position as a **digital reservation** that survives your temporary absence, and you’d lose trust quickly if it behaves as though physical presence is the only thing keeping your spot.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1631,
+    "prompt_tokens": 145,
+    "total_tokens": 1776,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1331,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

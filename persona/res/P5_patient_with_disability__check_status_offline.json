@@ -1,0 +1,31 @@
+{
+  "persona_id": "P5_patient_with_disability",
+  "persona_label": "Patient with a disability",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:58:00.541841+00:00",
+  "success": true,
+  "response_text": "### What You Expect to See\nGiven that you’re relying on TalkBack and have no internet, you expect the app to **show your last cached queue position** as text that’s fully labeled and navigable via keyboard or swipe gestures. Ideally, the screen reads something like:\n\n> “Your queue position: 12th. Last updated: 2:04 PM. Connection: offline. Showing saved data.”\n\nAll elements—your position number, the time stamp, any action buttons—should be announced clearly by TalkBack (e.g., “button: Refresh,” “heading: Queue status”). You don’t expect a blank screen, a generic “No internet connection” toast that can’t be dismissed, or an interface that relies on unlabeled icons to convey status.\n\n### What Would Reassure You That Your Place Is Safe\n- **A clear timestamp** showing when your position was last synced, confirming the data is recent and still held.\n- **Explicit language** such as “Your spot is reserved” or “Position held in queue” — not just a number that could reset.\n- **Local fallback** that lets you view your position immediately, with a non-intrusive prompt that connection will be restored for the next update.\n- **Full TalkBack compatibility**: every interactive element has an accessible label, the focus order is logical, and you can dismiss any status messages or retry prompts using the keyboard/Back gesture.\n- **No automatic logout or data loss** when the app detects offline status.\n\n### What Would Make You Distrust or Abandon the App in This Moment\n- **No cached data shown**: the app either displays “No internet connection” with no way to access your position, or resets your position to “1” or “unknown” while offline.\n- **Unreliable TalkBack support**: buttons announced only as “button” or “image,” sliders/labels without names, or focus trapped in a loop where you can’t reach the position info or exit the screen.\n- **Forced online requirement**: the app won’t let you proceed or even dismiss the connection error without data, effectively locking you out.\n- **Position disappearing or changing** the moment connectivity drops, suggesting the app doesn’t store queue data locally and treats your spot as temporary.\n- **Pop-ups or modals** that cover the queue info, trap TalkBack focus, and can only be closed by tapping an unseen “X” or “OK” button.\n- **Repeated “Refresh” attempts** that fail silently or show the same error, making you wonder if the app’s backend is down or if your spot was ever actually saved.\n\nIn short: you expect **offline-readable, fully labeled queue data** with a timestamp confirming your spot is held. You’d feel safe if the app admits it’s working from saved data and promises to sync later. You’d lose trust if the app goes dark, resets your position, or becomes impossible to navigate without a connection.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1547,
+    "prompt_tokens": 151,
+    "total_tokens": 1698,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1007,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "persona_id": "P5_patient_with_disability",
+  "persona_label": "Patient with a disability",
+  "scenario_id": "respond_to_call",
+  "scenario_label": "Responding to a call notification",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:01:09.812964+00:00",
+  "success": true,
+  "response_text": "**How you expect to be notified:**\n\n- **Channel**: An Android notification that fully supports TalkBack. It should appear in the shade as readable text, not as an icon-only badge, and ideally trigger a brief spoken announcement (\"New queue update\") if the app has that capability. You also expect a standard vibration pattern if your phone is set to one, but **never** a vibration-or-nothing alert with no speech.\n\n- **What it should say**: A clearly labeled spoken phrase such as:  \n  `\"Your turn is now being called\"`  \n  or  \n  `\"Dr. Alvarez is calling you to Room 4\"`  \n  The message must include plain text with a `contentDescription` (or equivalent) so TalkBack can read it verbatim. No \"round icon with number\" or \"colored badge only\" cues.\n\n**What you would do next:**\n\n1. **Swipe down** (or use your keyboard’s notification shortcut) to open the shade. TalkBack immediately reads the notification text.\n2. If the notification includes an **action button** (e.g., “Join Waiting Room”, “Proceed”, “Accept”), it must be **explicitly labeled** so TalkBack identifies it as a button, not just an image. \n3. Navigate using **Tab / Arrow keys** (if you’re using a physical or on-screen keyboard) or standard TalkBack gestures. Activate the button with **Enter** or a **double-tap**.\n4. If the action leads to a new screen, that screen must also be fully labeled: every control, field, and status line should have a readable description. You’d then follow the prompt (e.g., walk to the indicated room, confirm check-in, or join a virtual queue).\n\n**What could cause you to miss being called or fail to respond in time:**\n\n- The notification is **grouped, suppressed, or announced only via a silent vibration** with no TalkBack speech output.\n- Do Not Disturb, muted volume, or accessibility settings that block spoken notifications.\n- The app’s follow-up screen uses **icon-only buttons, unlabeled images, or custom views without `contentDescription`**, making the action invisible to TalkBack.\n- Focus does **not automatically move** to the action element after the notification is read, requiring you to hunt for a button that may be an unreadable graphic.\n- The queue message is **brief, ambiguous, or truncated** (e.g., just “Calling” with no name/room), so you’re not sure where to go.\n- A **delayed or batched notification** arrives after you’ve already left the waiting area or turned your phone screen off.\n- The app **overrides system speech** with a custom audio cue or pop-up that TalkBack can’t intercept or describe.\n\nIn short: you expect a **text-first, TalkBack-readable notification with a clearly labeled action**, navigable via keyboard or gestures, and any deviation from that—especially icon-only or focus-locked designs—is what puts you at risk of missing or being unable to act on the call.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1645,
+    "prompt_tokens": 142,
+    "total_tokens": 1787,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1133,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "persona_id": "S5_background_sync",
+  "persona_label": "Background sync process (system actor)",
+  "scenario_id": "join_queue",
+  "scenario_label": "Joining a queue for the first time",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:44:12.674028+00:00",
+  "success": true,
+  "response_text": "### 1. Systems Perspective: Automated Background Synchronisation Process\n\n**Role:** I am the offline-first sync engine running in the mobile app's background. I am not a human user; I am a deterministic, idempotent process responsible for data consistency.\n\n**What I need to do correctly:**\n\n- **Reconciling local SQLite with the cloud database:**  \n  On every sync cycle (triggered by app foreground, periodic background fetch, or explicit user refresh), I compare local row versions/timestamps against the cloud's `last_modified` or `etag`. I fetch only changed rows, apply them to SQLite using transactions to preserve ACID guarantees, and mark synced rows with a `synced_at` timestamp or a version vector. If the local schema has evolved (e.g., new columns, type changes), I run a safe migration script before merging.\n\n- **Avoiding duplicate queue entries:**  \n  I enforce a **composite unique constraint** on `(clinic_id, patient_id, queue_token)` at the SQLite level and re-validate against the cloud's primary key before inserting. Every sync request includes a client-generated, globally unique `sync_id` (UUID v4). If a `queue_join` operation already exists locally with the same `sync_id`, I skip the insert and return the existing record. Idempotent HTTP methods (POST with idempotency-key header) ensure the cloud also rejects duplicates.\n\n- **Handling data written while offline:**  \n  All queue‑join attempts, status updates, and patient check‑ins are written to a local `outbox` table *before* any network call. If the device is offline, the row stays in the outbox with `status=pending`. On reconnection, I flush the outbox in order, using exponential backoff on 5xx/timeout errors. Conflicting cloud changes (e.g., another clinician released the slot) are resolved via last‑write‑wins based on server timestamps, or via a three‑way merge if the app supports patient‑noted preferences.\n\n**What would cause me to fail:**\n\n- **Schema drift or missing columns:** If the local SQLite schema doesn't match the cloud's expected contract, inserts silently fail or corrupt data.\n- **Non‑idempotent sync attempts:** Re‑trying a `queue_join` without a unique `sync_id` creates duplicate rows, breaking queue integrity.\n- **Stale‑write overwrites:** Without proper version comparison, a locally‑cached old queue position could overwrite a newer cloud state (e.g., patient checked in, slot released), leading to ghost entries.\n- **Outbox starvation:** If the sync process crashes or is killed before flushing pending rows, data loss occurs; if it retries blindly without backoff, it may trigger rate‑limiting or network exhaustion.\n- **Conflict‑resolution gaps:** When two devices join the same queue offline simultaneously, missing merge logic can result in lost entries or incorrect queue positions.\n\n---\n\n### 2. User Walkthrough: First‑Time Clinic Queue App Launch\n\n**Persona:** I'm a patient walking into my local clinic for the first time. I've never used this app before.\n\n**What I expect to see:**\n- A clean, welcoming onboarding screen asking me to select my clinic from a list (or auto‑detect via GPS).\n- A brief permissions prompt: \"Allow the app to send you notifications about your queue position?\"\n- A \"Take a Number\" or \"Join Queue\" primary action button.\n- Optionally, a quick \"View average wait time\" or \"Clinic hours\" link.\n\n**What would make me confident I successfully joined the queue:**\n- A bright confirmation toast: \"You're number 12 in line for the General Practitioner. Estimated wait: 25 minutes.\"\n- A persistent notification or in‑app badge showing my position, with an option to \"Refresh\" or \"Cancel.\"\n- A unique queue number/ID displayed clearly, and an estimate that updates as others join/leave.\n- The app smoothly transitions me back to the home screen, or keeps me on a minimal \"Your Queue\" screen.\n\n**What would confuse, worry, or stop me:**\n\n- **No confirmation after tapping \"Join Queue\":** Just a spinner that never resolves, or a silent failure. I'd wonder if it worked, if I'm double‑charged, or if I need to restart the app.\n- **Error messages like \"Network error\" without a retry option:** I'm already at the clinic; I expect the app to work offline or queue the request for when signal returns.\n- **Being asked to sign in or create an account mid‑flow:** Especially without clear benefit. I might abandon the attempt.\n- **Duplicate queue entry:** If I accidentally tap \"Join\" twice and get two numbers, or see \"You're already in the queue\" after already joining—this breaks trust in the system.\n- **Vague position info:** \"Your turn is coming up soon\" with no number or timer. I'd keep the app open, checking obsessively, or leave frustrated.\n- **Unexpected permissions:** The app demanding location access *always* or full phone access without explanation would make me suspicious and likely quit.\n\n**What would stop me entirely:**\n- The app crashes on launch or immediately after tapping \"Join.\"\n- It requires iOS/Android version I don't have, or forces an update I can't install.\n- It asks for payment or personal info beyond what's reasonable for a free queue system.\n\nIf I see a clear number, a reasonable wait estimate, and a reliable \"refresh\" mechanism, I'll feel the app is trustworthy and will likely keep it for future visits. If the first experience is glitchy or opaque, I'll delete it and find another way to check the queue.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 3755,
+    "prompt_tokens": 155,
+    "total_tokens": 3910,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 3025,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

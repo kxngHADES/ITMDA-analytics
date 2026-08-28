@@ -1,0 +1,31 @@
+{
+  "persona_id": "P6_rural_low_connectivity",
+  "persona_label": "Rural / low-connectivity patient",
+  "scenario_id": "join_queue",
+  "scenario_label": "Joining a queue for the first time",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:03:31.345101+00:00",
+  "success": true,
+  "response_text": "**Opening the app (first time):**\n\nI find the icon on my home screen. It's small, no flashy animated logo, just plain text: \"Clinic Queue\". Given my old Android and 2G connection, it opens quickly, flashes a brief white screen, then settles on a minimalist splash that just reads *\"Mankweng Clinic – Queue Management\"*. No intro video, no \"Loading. Please wait...\" spinner that drags on. If it showed a progress bar that filled slowly on 2G, I'd assume it's stuck.\n\n**Selecting the clinic:**\n\nThe app asks for my location or a list of nearby clinics. Because signal is spotty, it doesn't try to auto-detect with GPS precision. Instead, it instantly shows a simple, alphabetized list: *\"Mankweng Clinic\", \"Seshego Clinic\", \"Polokwane Central\"*. I tap *\"Mankweng Clinic\"* – my local one. The list has no images, just clinic names. If it required me to type or search via a keyboard on this low-spec phone, or showed a map that refused to load without 3G/4G, I'd quit right there.\n\n**Joining the queue:**\n\nNext screen: a large, high-contrast button labelled **\"Take a Number\"**. I tap it. Immediately, a small overlay pops up:\n\n> *\"You are number 14 in the queue. Your position is saved on your device. If you lose signal, your spot is held locally and will sync when connectivity returns. OK\"*\n\nNo \"Connecting to server...\" wheel that never ends. No \"Please wait while we fetch your token from the cloud.\" The text is plain, maybe 12pt font, dark on light background – easy to read even if the screen's a bit dim or degraded from age.\n\n**What makes me confident I've successfully joined:**\n\n- The number (14) appears instantly, with no spinner.\n- The message explicitly says my spot is saved *locally*. That's the dealbreaker for me on 2G with drops – if the app says \"saved on device\", I believe my number won't vanish if signal cuts out mid-wait.\n- No data usage indicator jumps up, no \"Downloading patient roster...\" toast. My 2G stays relatively idle.\n- The button either grays out or changes to **\"Waiting...\"** but the number stays visible.\n\n**What would confuse, worry, or stop me:**\n\n1. **Any delay >10 seconds on 2G** without a clear status. If it spins \"Connecting...\" for 30+ seconds and then says \"Server unavailable\", I'm out. I can't wait that long on an unreliable connection, and I can't risk being locked out of the queue.\n2. **Auto-downloads or large upfront data usage.** If the first screen shows a clinic logo image that takes 2 seconds to appear on 2G, or if the app asks me to \"Accept terms\" by loading a 500KB banner, I'll close it. Data is expensive, and I avoid apps that waste it on open.\n3. **Mandatory account creation or phone number verification right away.** If joining the queue makes me create a username, type an email, or verify via SMS before I see a number, I stop. I don't have steady connectivity for OTPs, and I don't want another password I'll forget.\n4. **No offline guarantee.** If the screen just says \"Joining queue...\" with no mention of what happens if I lose signal, I worry my number will disappear the moment the bars drop. I need that explicit \"saved locally\" line.\n5. **Heavy animations or auto-playing sounds.** My phone is low-spec; if the app tries a slick animation on opening or a \"ding\" sound on joining, it'll either lag the UI or feel out of place in a rural clinic setting. I'd mute/uninstall fast.\n6. **A confirmation that only appears after a server sync.** If the \"You're number X\" message only pops up 2 minutes later, after the app finally connects, I'm already stressed. I need confirmation before I put the phone away.\n\n**Bottom line:** I expect a dead-simple, text-first experience that respects that I'm on 2G, my phone is old, data costs money, and my signal will vanish. I feel confident the moment I see my number + the \"saved locally\" note. Anything that hides that, delays with spinning wheels, or demands data-heavy actions before I see a result makes me close the app and stick to the manual ticket system I'm used to.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 2225,
+    "prompt_tokens": 169,
+    "total_tokens": 2394,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1309,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

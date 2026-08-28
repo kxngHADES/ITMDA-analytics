@@ -1,0 +1,31 @@
+{
+  "persona_id": "P6_rural_low_connectivity",
+  "persona_label": "Rural / low-connectivity patient",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:06:38.044504+00:00",
+  "success": true,
+  "response_text": "**What I expect the app to show:**\nA instantly-loading, text-only screen displaying my last-known queue position (e.g., “Position #8 in queue – last updated 2:12 PM”), with a small badge or label noting I’m currently offline. The app should pull this from local cache, not demand a fresh data connection. It should feel like checking a saved status, not launching a new request. No spinners, no “connecting” overlays, no graphics that tax my old phone or burn what little data I have left.\n\n**What would reassure me my place is safe:**\n- An explicit, calm message like: *“Your spot is saved on your phone. It holds until you reconnect or the queue resets.”*\n- A clear timestamp showing exactly when my position was last confirmed by the clinic system.\n- The ability to close and reopen the app later without losing my place or being forced to re-join from the bottom.\n- Zero data cost to view this screen—just cached local data.\n- A subtle but visible “offline since” indicator so I know my spot is temporary but preserved.\n\n**What would make me distrust or abandon the app:**\n- My position vanishing the moment connectivity drops, forcing me to “Join queue” again from scratch.\n- A generic “No internet connection” error with no offline fallback, no cached info, and no way to see where I stand.\n- Slow, data-heavy loading loops or crashes on 2G that require me to constantly re-request my spot just to check.\n- No explanation of how long my position lasts, or whether it’s tied to a session, a timer, or something I control.\n- If simply opening the app costs me mobile data, or if the UI assumes constant connectivity and breaks gracefully only after I’ve already lost patience or money.\n\nIn a setting where signal drops, data costs real money, and the clinic queue is first-come-first-served, I need the app to treat my offline moment as a **pause, not a failure**. If it treats me like I’m offline because something went wrong, I’m deleting it on the spot.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1552,
+    "prompt_tokens": 169,
+    "total_tokens": 1721,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1215,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

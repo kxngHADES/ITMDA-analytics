@@ -1,0 +1,31 @@
+{
+  "persona_id": "S5_background_sync",
+  "persona_label": "Background sync process (system actor)",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:45:30.448145+00:00",
+  "success": true,
+  "response_text": "**Role:** Automated background synchronisation process (stateless, deterministic, conflict-aware sync agent)  \n**Context:** Mobile client with local SQLite cache, cloud-backed queue service, intermittent connectivity.\n\n### What I need to do correctly (success conditions)\n\n1. **Local-SQLite ↔ Cloud Database Reconciliation**\n   - On app foreground or explicit sync trigger, I pull the server's latest queue state (version vector/timestamp/etag) and compare it against the local SQLite `queues` table.\n   - I identify: (a) local-only rows (unsent or updated locally offline), (b) cloud-only rows (deleted or updated by other clients), (c) mutual changes.\n   - For mutual changes, I apply a merge strategy: if the change is to a non-identity field (e.g., estimated wait time, position bump), I take the newer timestamp; if it's a structural change (token, clinic ID), I flag a conflict for UI resolution or server-mediated merge.\n   - I write resolved rows back to SQLite, ensuring the local schema always reflects a consistent, single source of truth for the foreground UI.\n\n2. **Avoiding Duplicate Queue Entries**\n   - Every queue token/ID carries a unique, server-assigned UUID or a composite key (clinic_id + patient_token). I enforce a UNIQUE constraint in SQLite on this key.\n   - Before inserting any row, I perform `INSERT OR IGNORE` / `INSERT OR REPLACE` using the conflict target. If a row with the same key exists and has an older timestamp, I update it; if same timestamp, I keep the existing one (idempotency).\n   - I also maintain a local \"synced_at\" epoch column. Any row where `synced_at < last_server_sync_epoch` is treated as potentially stale and re-evaluated, but never duplicated.\n\n3. **Handling Data Written While Offline**\n   - While offline, the UI writes new queue entries or position updates to a local `offline_queue` table (or extends the main table with a `status='pending'` flag). These rows are stamped with `local_created_at` and `last_modified_at`.\n   - When connectivity restores and a sync cycle begins, I prioritize these rows: they are sent to the cloud in creation order, with retry logic (exponential backoff). On successful acknowledgment (HTTP 200 + server-generated `server_at`), I mark them `synced_at = server_at` and remove/flag them as synced.\n   - If the server returns a conflict (e.g., token already taken, position out of range), I reject the insert, roll back the local change, and surface a specific error to the UI rather than silently corrupting the queue.\n\n### What would cause me to fail\n\n1. **Reconciliation failures**\n   - Missing version vectors or timestamps → I cannot determine which row is newer, leading to overwrite anomalies (e.g., a position update from another patient silently clobbering your offline entry).\n   - Schema drift between SQLite and cloud (e.g., new required field on server, but local DB lacks migration) → Insert fails, sync aborts, and the client may show stale data or crash if unhandled.\n\n2. **Duplicate queue entries**\n   - Missing UNIQUE constraint or bypassing it with raw `INSERT` → Two rows represent the same queue token, causing the UI to show conflicting positions, double-notifications, or incorrect count badges.\n   - Failure to check `synced_at` before treating a row as \"new\" → A re-synced offline entry gets queued twice, inflating queue length and breaking position logic.\n\n3. **Offline-write mishandling**\n   - Writing to cloud without acknowledgment or retry guarantee → Data loss if the process is killed mid-transmit, or stale data if the server accepted an outdated version.\n   - No conflict detection on offline writes → Two identical tokens created on two offline devices both sync, and the server must choose one; the losing local row becomes orphaned, and the UI may show \"position X\" but the server has \"position Y\", breaking user trust.\n   - Silent failure on sync error → The app shows the queue position as if online, but the data is actually stale or corrupted; the user opens the app expecting accuracy and encounters bugs.\n\n### Outcome for the user's scenario\nIf the sync process has correctly implemented the above: \n- On launch with no internet, the app reads the last known good state from SQLite (which was written when you joined the queue online). \n- It displays your position based on that local snapshot, possibly grayed-out or with \"last updated X minutes ago\" notation. \n- No duplicate entries exist; the position is consistent with the last successful sync. \n- When you regain connectivity, the sync cycle runs silently, resolves any offline writes, and updates the position without user-perceived glitches.\n\nIf the sync process fails any of the above: the app either crashes on launch, shows a frozen/incorrect position, allows duplicate queue slots, or silently loses your offline update — all of which would erode trust and likely prompt abandonment in that moment.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1779,
+    "prompt_tokens": 155,
+    "total_tokens": 1934,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 833,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

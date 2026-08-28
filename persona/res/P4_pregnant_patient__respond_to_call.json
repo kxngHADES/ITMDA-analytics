@@ -1,0 +1,31 @@
+{
+  "persona_id": "P4_pregnant_patient",
+  "persona_label": "Pregnant patient",
+  "scenario_id": "respond_to_call",
+  "scenario_label": "Responding to a call notification",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:51:36.213817+00:00",
+  "success": true,
+  "response_text": "**Preferred Notification Channel**  \n- **Primary:** SMS/text message to the mobile number on file. This works on any phone, doesn’t require internet, and is the most reliable way to reach someone sitting or lying down at home or in a car.  \n- **Secondary/Optional:** Push notification through the clinic’s official app (if you have it installed). Both channels should be configured to bypass Do Not Disturb/silent modes with a standard alert sound or vibration, so the message makes itself known even if you’re resting.\n\n**What the Message Should Say**  \n- Short, clear, and easy to read at a glance. Example:  \n  `[Clinic Name]: You’re almost ready. Please proceed to the main reception desk. Reply “ARRIVED” when you’re on your way, or tap the link to confirm remotely.`  \n- Or simpler: `You’re next – head to check-in. We’re waiting. Your approximate wait: 5–10 mins.`  \n- Use high-contrast text, large enough to read without zooming, and avoid jargon. If a confirmation reply or tap is requested, keep it to one tap or a 3-word reply so it’s quick even on a tired hand.\n\n**What to Do Next**  \n1. **Read the notification** and follow the instruction (typically “proceed to reception” or “enter through [door]”).  \n2. **If asked to reply “ARRIVED” or tap a link**, do so to confirm your position remotely–this often prevents you from having to stand at the check-in desk.  \n3. **Head to the clinic**–you’ll usually walk straight to a designated waiting chair or check-in kiosk, bypassing the main queue.  \n4. **If running late or needing more time**, reply briefly so the clinic can adjust your position or offer a later slot.  \n5. **Upon arrival**, check in (often digitally or at a kiosk), update your status if needed, and be called in–no standing in the general waiting area.\n\n**What Could Cause You to Miss or Fail to Respond in Time**  \n- Phone on **complete silent/vibration off**, or Do Not Disturb blocking all alerts (including repeat calls).  \n- **No cellular signal or Wi-Fi** at home/car (basements, rural locations, parked in dead zones).  \n- **Phone battery dead or turned off**.  \n- App notifications **disabled**, the clinic app **not installed or not updated**, or the alert filtered into a secondary inbox/spam folder.  \n- Message **delayed or failed to send** on the clinic’s end (system glitch, high-volume queue).  \n- **Misreading the timing**–assuming you have more buffer than the message actually indicates, especially if the “almost there” window is short.  \n- **Life events** like car trouble, sudden contractions, or needing the bathroom, which are outside the system but worth having a backup plan for (e.g., a quick call to the clinic if you’re delayed).\n\nThis setup respects your need to avoid prolonged standing while keeping the clinic loop informed and your wait predictable.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1852,
+    "prompt_tokens": 136,
+    "total_tokens": 1988,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1278,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

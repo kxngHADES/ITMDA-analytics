@@ -1,0 +1,1025 @@
+[
+  {
+    "persona_id": "P1_adult_patient",
+    "persona_label": "Adult patient (25-60, smartphone familiar)",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:06:15.718869+00:00",
+    "success": true,
+    "response_text": "### Opening the App – First Impressions\nI tap the icon on my home screen. It’s called *\"Clinic Queue SA\"* – I saw it shared in a community WhatsApp group for my area in Tshwane. The splash screen is quick, no animated intro that overstays its welcome. I’m taken straight to a simple, mostly-white screen with the clinic name at the top (“Diepkloof Community Health Centre”), a prominent green button that says **\"Join Queue\"**, and below that, a small line of grey text: *\"Check your position from anywhere.\"*\n\nBecause I’m on a mid-range Android (a Samsung A14 I bought cash-sparingly last year), the screen renders instantly – no lag, no \"Unfortunately, the app has stopped.\" The typography is clear, the buttons are big enough for my thumb to hit without zooming in. There’s a subtle \"data saving\" badge in the corner, which I appreciate; I know my mobile data sometimes drops when I’m moving between the taxi rank and the clinic.\n\n### What I’d See to Feel I’d Successfully Joined\nA couple of things happen, and I’d feel confident if:\n\n1. **The button changes instantly.** Tap \"Join Queue\" and it morphs into a grey box reading **\"You're in the queue!\"** with my position number – something like *\"Position #47 out of ~120\"* – and an estimated wait time: *\"~52 minutes\"* (or *\"~1h 15min\"* if it’s busy). \n2. **My phone vibrates or a short chime plays.** Even with the ringer off, a gentle haptic pulse lets me know the command registered, especially important since I’m often juggling the phone in one hand and a mask/ID in the other.\n3. **A minimal notification pops into my shade:** *\"Queue #47 active. Tap to view updates.\"* I don’t have to stay on the screen. I can lock the phone and still see the position update in the notification, or pull it down later to see if my number moved.\n4. **The wait time feels realistic.** If it says 45 minutes and the app has a small \"live\" counter that ticks down slowly, I trust it. If it just says \"Estimate based on average\" that’s fine too, as long as it’s not a static \"5 mins\" when the room is clearly packed.\n\n### What Would Confuse, Worry, or Stop Me\nAnd here’s where it could go wrong, real quick:\n\n- **The spinner that never ends.** If tapping \"Join Queue\" just shows a circular loader that spins for 5+ seconds before anything happens, I’m out. On a mid-range phone with flaky data, slow starts feel like a crash. I’d assume the clinic’s backend is down or the app’s broken, and I’d revert to the physical ticket machine outside.\n- **\"Please enable location to find your nearest clinic.\"** I’m fine with a one-time prompt, but if the app demands \"Allow location all the time\" or won’t let me join without GPS turned on—and my data drops mid-prompt—I’d feel tracked unnecessarily. I’d probably abandon the join attempt.\n- **A mandatory registration form before I can join.** Asking for full name, ID number, email, and a password before I even see if I’m in the queue feels like too much friction for a first-time, impatient user. I’d expect a \"quick join\" option: maybe just phone number or nothing more than a \"proceed as guest\" toggle.\n- **No clear \"you’re in\" confirmation.** If after tapping the button the screen just refreshes to the same view, or shows a generic \"System busy, try again later\" with no position number, I’d have no idea if I’m patient #1 or #100. I’d likely just queue physically instead.\n- **Data drops right after I join.** If the app successfully says \"You're in position #47\" but then loses connection and either closes or shows a blank \"Reconnecting...\" screen, I’d panic. I’d worry I’m now in the queue but can’t prove it, or that I’ve been double-booked. The app should cache my position locally so I can at least see it offline, then sync when data returns.\n- **Language or design that feels exclusionary.** The clinic serves a multilingual community. If the app is only in English with no Zulu/Sotho toggle, or if the UI uses technical jargon (\"Token allocation protocol v3.2\") instead of plain \"You're number 47, you're next when your number is called,\" I’d feel the clinic is tech-for-tech's-sake rather than patient-centric.\n\n### Bottom Line\nI’d feel confident the moment I see **a clear position number + estimated wait + a persistent notification I can check without staying in the app.** I’d walk away, do errands, maybe grab a coffee, and peek at the notification every 15 minutes. If any of the above friction points kick in—especially a mandatory sign-up, a never-ending loader, or a loss of data right after I join—I’d likely close the app and join the physical queue, because at that point the \"digital\" part is adding stress instead of saving my morning.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2303,
+      "prompt_tokens": 160,
+      "total_tokens": 2463,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1269,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P1_adult_patient",
+    "persona_label": "Adult patient (25-60, smartphone familiar)",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:09:41.270533+00:00",
+    "success": true,
+    "response_text": "**What I expect the app to show:**\nA clean offline state that respects the data I already have. Instead of a blank wall or a \"No internet\" crash, I expect the app to display my last cached queue position (e.g., \"Position 42 of 120\", \"Est. 28 min wait\"), the time/date it was last updated, and a subtle offline banner. The interface should remain functional-but-read-only, with a \"Refresh when online\" prompt rather than a dead end. Since I'm on a mid-range Android with data that drops occasionally, I've come to expect that the app at least keeps my spot locally until it can sync.\n\n**What would reassure me my place is still safe:**\n- My position number is unchanged and clearly labeled (not \"Loading...\" or \"Resetting\")\n- A timestamp like \"Last updated: 8:14 AM\" or \"Seen on server: 15 min ago\" tells me the system still tracks me\n- An explicit \"Cached data from earlier today\" or \"Offline mode: your spot is saved\" message\n- No requirement to re-register, re-verify, or start over just because I'm offline\n- A simple pull-to-refresh that gracefully handles the reconnection without losing my spot\n\n**What would make me distrust or abandon the app right now:**\n- A blank screen, \"No data available,\" or an error toast that doesn't explain *why* or *what happens next*\n- My position resetting to \"1\" or disappearing entirely just because I'm offline\n- The app crashing, force-closing, or demanding I log in/verify again mid-offline\n- A hard \"Connection required\" wall that strips all queue info with no cached fallback\n- Having to re-join the queue from scratch, or seeing a message that I've been \"removed due to inactivity\"\n- No indication of when my data was last synced, or an ambiguous \"try again later\" with no timeline\n\nGiven my experience with public clinic systems in Gauteng, I'd give the app the benefit of the doubt if it at least *showed* me something useful offline. But if it treats being offline as a total blocker, or worse, erases my spot—I'd immediately switch to calling the clinic directly or showing up in person, and I'd start looking for a more reliable alternative next time.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1530,
+      "prompt_tokens": 160,
+      "total_tokens": 1690,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1144,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P1_adult_patient",
+    "persona_label": "Adult patient (25-60, smartphone familiar)",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:16:11.018342+00:00",
+    "success": true,
+    "response_text": "### How You'd Expect to Be Notified\n\n**Primary channel:** Push notification via the clinic’s official mobile app (pop-up banner/sound, even when the app is running in the background)  \n**Backup channel:** SMS to your phone number on file (works on any network, no data required)  \n**Content of notification:**  \n> *\"Gauteng Clinic: You're next! Please proceed to the consultation area. Your ticket: T-#8821. Show this at Window 2.\"*  \n> *(If you're already in the queue or have checked in earlier, it may read: \"You're almost up – head to the waiting area.\")*  \n> Notifications are concise, action-oriented, and include your ticket number so you can confirm it's yours without guessing.\n\n**Why this mix:**  \n- Push notifications give you rich context (ticket number, direction, clinic name) and work instantly when your phone has data or Wi-Fi.  \n- SMS is the fail-safe: it goes through on basic signal, doesn't consume your data bundle, and reaches you even if your app is closed, the phone is locked, or mobile data drops mid-notification.  \n- Both channels are free, no subscription required, and tied to the clinic’s existing patient registration system.\n\n---\n\n### What You’d Do Next\n\n1. **Immediately check the notification** – glance at the screen; the ticket number confirms it’s yours.  \n2. **If you’re already at the clinic:** Head straight to the indicated window/area (e.g., Window 2 for general consultation, Pharmacy for scripts, etc.).  \n3. **If you’re en route or elsewhere:** Open the app or check the SMS, estimate travel time, and proceed. Most apps also show a \"remaining wait time\" or \"queue position\" update so you can decide whether to rush or grab a coffee first.  \n4. **Confirm arrival** – tap \"I'm here\" in the app (if available) or simply check in at the reception desk/kiosk. This updates the system and prevents double‑calling.  \n5. **If no notification arrives** – after 5–10 minutes of waiting past your expected turn, check the app’s queue screen, refresh, or ask at the front desk for your status.\n\n---\n\n### What Could Cause You to Miss Being Called or Fail to Respond in Time\n\n| Reason | How It Breaks the Flow |\n|--------|-----------------------|\n| **Phone on silent / Do Not Disturb** | Push sound/vibration suppressed; SMS still arrives but might be missed if screen is off or you’re in a noisy area. |\n| **App notifications disabled or muted** | No pop-up, no badge icon; you’d only see the alert if you manually open the app. |\n| **Mobile data drops exactly when the call goes out** | Push notification stalls or delays; SMS may still go through, but if you have no signal at all, neither reaches you. |\n| **Battery dead or phone turned off** | Neither channel works unless you charge/turn on before arriving. |\n| **Notification arrives while you’re in a dead zone / poor coverage** (e.g., underground parking, rural leg of commute) | App can’t deliver push; SMS may queue and arrive late once signal returns. |\n| **Clinic system glitch / call not transmitted** | The queue computer thinks it called you, but the backend fails to push/SMS you. Rare, but happens in overburdened public clinics. |\n| **You don’t check the phone promptly** | Notifications auto-dismiss after a few seconds/minutes; if you look up 15 min later, the alert is gone. |\n| **Language or formatting confusion** | If the ticket number or clinic name is truncated or displayed in an unfamiliar script, you might hesitate or go to the wrong window. |\n| **Shared phone / family member’s device** | If the app/SMS is linked to a number a relative usually uses, you might not get the alert. |\n\n### Quick Mitigation Tips (for you, given your setup)\n- Keep app notifications **enabled** and set your phone to **\"priority only\"** during clinic hours, or allow the clinic app to bypass DND.  \n- Ensure **SMS is active** on your line; it’s the most reliable fallback.  \n- Keep **at least 15% battery** or a power bank handy for morning clinic trips.  \n- Periodically **open the app** while waiting to sync queue position, especially if data has been spotty.  \n- Save the clinic’s **direct phone number** in your contacts so you can call the queue desk if notifications go silent.\n\nThis setup balances speed, your tech comfort, and the reality of South African public clinic infrastructure—getting you in and out with minimal morning downtime.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1723,
+      "prompt_tokens": 151,
+      "total_tokens": 1874,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 767,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P2_elderly_patient",
+    "persona_label": "Elderly patient (65+, limited tech exposure)",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:22:20.713391+00:00",
+    "success": true,
+    "response_text": null,
+    "finish_reason": "error",
+    "usage": {
+      "completion_tokens": 997,
+      "prompt_tokens": 180,
+      "total_tokens": 1177,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 997,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P2_elderly_patient",
+    "persona_label": "Elderly patient (65+, limited tech exposure)",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:26:16.723617+00:00",
+    "success": true,
+    "response_text": "### What the app shows me right now (offline)\n\nI tap the app icon, and since my phone has no internet, the screen stays blank for a moment, then a muted, grayish screen appears. It says something like \"No internet connection\" in small letters at the top, and below that, a faded version of my queue number — maybe \"Position 14\" — but it's not bright or clear. The menu buttons at the bottom are dimmed, and I can tell the app isn't loading anything new. Because my grandchild set the phone up, the font is the default size, and the gray text against the white screen feels a bit blurry to me without my reading glasses. I worry for a second that I've been \"disconnected\" from the queue and will have to start all over, but the app doesn't kick me out or ask for my details again. It just sits there, waiting.\n\n### What would reassure me that my place is still safe\n\nIf the app, even offline, showed a simple, bold message near the top in large, high-contrast text — something like:  \n**\"You're still in the queue. Position 14. The clinic has your spot. Tap once when you have internet to update.\"**  \n\nThat would calm me instantly. I wouldn't need to press multiple buttons or figure out new menus. Maybe there's a single, wide button at the bottom that says \"Check again\" with plenty of space around it, so my arthritic fingers can tap without worrying I'll accidentally press something else. The knowledge that my position is cached on the phone and won't disappear, combined with the simple instruction to just wait for a connection, would make me feel secure. I'd close the app, go back to waiting, and feel confident I'm not going to lose my turn.\n\n### What would make me distrust or abandon the app in this moment\n\nIf the screen fills with technical jargon I don't understand — something like \"ERROR 404: Connection Timeout. Queue session expired. Please re-register at the clinic.\" — I'd panic. I'd worry I've lost my place and will have to stand in the hot queue all over again. \n\nIf the app automatically logs me out, wipes my queue number, or forces me to re-enter my name and ID using tiny fields I have to zoom in on, I'd feel frustrated and treated like I'm tech‑savvy when I'm not. \n\nA full‑screen pop‑up with small X buttons, \"OK\" prompts that disappear quickly, or a \"Refresh\" button that spins forever without result would make me feel like the app is working against me. Given my fear of \"breaking something,\" if pressing any button feels like it might kick me out or delete my spot, I'd simply close the app, decide it's \"not for me,\" and go back to the clinic the old‑fashioned way. I'd tell my grandchild it was too confusing, and we'd stop using it altogether.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1943,
+      "prompt_tokens": 163,
+      "total_tokens": 2106,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1439,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P2_elderly_patient",
+    "persona_label": "Elderly patient (65+, limited tech exposure)",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:29:26.588988+00:00",
+    "success": true,
+    "response_text": "**How you’d expect to be notified**\n\n- **Channel:** A simple **SMS** or a very basic push notification from the clinic app your grandchild set up. SMS is most reliable in South Africa—it works without data, appears on your screen immediately, and doesn’t require opening a menu or app.  \n- **What it says (large, high-contrast text, possibly read aloud by your phone’s speaker feature):**  \n  `CLINIC: Your turn is now. Please go to Desk 5. Thank you.`  \n  No links, no submenus, just plain words in big font. A soft chime or gentle vibration accompanies it, but the text alone is enough.\n\n**What you’d do next**\n\n1. **When the alert sounds/appears:** Just look at the phone. There’s no complicated menu to navigate.  \n2. **No pressure to tap:** If a button is present, it would be a single, large, clearly labelled one (e.g., “I’m coming” or a simple swipe). Ideally, the alert is informative only—you don’t have to confirm anything, so you won’t worry about “breaking something” by pressing the wrong button.  \n3. **Slow, steady movement:** Because of your arthritis and inability to stand for long, you’d take your time shifting forward in your chair, gathering your belongings, and walking to Desk 5 at your own pace. Clinic staff at public facilities expect and accommodate patients who need a moment.\n\n**What could cause you to miss being called or fail to respond in time**\n\n- Phone on **silent** or vibration too faint to feel (arthritis can reduce sensitivity to subtle taps).  \n- Alert arriving while you’re not looking at the screen (e.g., phone face-down in your bag or on a table).  \n- The message getting **buried** among other texts, WhatsApp chats, or app notifications.  \n- **Fear of pressing buttons** making you hesitate or leave the phone untouched, thinking you’ll “break it,” which delays your response.  \n- **Battery dead** or phone turned off.  \n- **Loadshedding or network issues** common in SA—your grandchild may have set up app-based alerts, but without power or data, the notification won’t arrive.  \n- Small but noticeable **delay in unlocking** the phone or reading the text, especially if you’re tired or in pain.\n\nThe goal is a notification that’s **heard/seen instantly, requires zero complex action, and gives you enough time to move slowly and safely** toward the desk. If the clinic also uses the traditional loudspeaker system, that’s always a helpful backup if the phone alert fails.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2233,
+      "prompt_tokens": 154,
+      "total_tokens": 2387,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1825,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P3_low_digital_literacy",
+    "persona_label": "Low-digital-literacy patient",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:33:44.881661+00:00",
+    "success": true,
+    "response_text": "### What I expect to see when I first open the app\n\nMy phone lights up. The screen isn't blank—there's a big logo or a picture of a clinic at the top, and underneath, a few clear icons: one maybe looks like a ticket or a number, another like a person or a clock. I don't see a long welcome paragraph or instructions written in small font. If there's text, it's just a few short words, maybe in a language I recognize, or paired with a picture so I can guess what it means.\n\nI've used WhatsApp voice notes, so I'm used to tapping icons to start something. I expect this app to feel familiar—tapping a picture to begin, not filling out a form right away. I hope the first screen just asks me to pick a language or select \"Join Queue\" with a big, colorful button that has an image of a person standing in line or a number waiting to be called.\n\n### The moment I join the queue\n\nI tap the \"Join Queue\" icon. The screen changes slightly—a progress bar maybe, or the clinic logo pulses gently. I don't remember having to type my name or ID. Maybe I just confirmed \"Yes, I'm here\" with a single tap, or the app already knew I was calling from the local area because of my phone number (which I'm more comfortable sharing than writing).\n\nThen, a screen pops up with a bold number or a colored badge: \"You're number 12. Wait here.\" There's a picture of a little person or a badge with a number on it, and maybe a short phrase like \"Your turn is coming\" under it. No dense text explaining terms or privacy policies. Just a clear visual that says I'm in, and I'm waiting.\n\n### What would make me confident I successfully joined the queue\n\n- A clear, big image or icon showing my spot in line (a number, a badge, a progress bar moving)\n- Minimal or no typing from me—maybe just one tap or a confirmation press\n- Language or script I recognize, or text paired with pictures so I can understand without reading fluently\n- A \"Done\" or \"You're in\" screen that stays visible until I close the app\n- A sound or vibration (like a WhatsApp notification) that gently tells me the action went through\n\nIf the app says \"Successfully registered\" in plain text with a checkmark icon, I'd feel sure I did it right.\n\n### What would confuse, worry, or stop me at this step\n\n- **Long blocks of English text** on the first screen—if I have to read and understand a paragraph about \"terms of service\" or \"data collection\" before I can tap anything, I’ll likely freeze or exit. I get nervous about forms asking for personal details, especially if I don't know what I'm signing.\n- **Too many permission pop-ups** asking for my location, contacts, or ID number right away. I'm not opposed to sharing, but I need to understand why, and I'd prefer it be optional or explained with an icon, not a wall of text.\n- **A screen that asks me to type my full name, address, and clinic ID** before I can even see a queue number. I’d assume this isn't the right app or that it's too complicated, and I’d shut it down.\n- **Unclear error messages** like \"Oops! Try again\" without an icon or simple explanation. I’d panic, thinking I broke something or that I’m locked out.\n- **No visual confirmation** after I tap \"Join\"—if the screen just goes back to the home screen or stays blank, I’d wonder if it worked. I might tap again, then worry I double-registered or messed up.\n\n### Bottom line\n\nI want a calm, visual-first onboarding. A big \"Join Queue\" icon, maybe a language pick if needed, then a simple screen showing I'm in line with my number—no reading-heavy forms, no surprise permission requests, and a clear \"you're done\" moment. If it feels like WhatsApp in simplicity, I'll feel confident and safe. If it feels like a formal online form, I'll likely close it and ask someone else for help.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1665,
+      "prompt_tokens": 152,
+      "total_tokens": 1817,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 830,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P3_low_digital_literacy",
+    "persona_label": "Low-digital-literacy patient",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:37:46.180054+00:00",
+    "success": true,
+    "response_text": "**What I expect the app to show me:**\nSince my phone has no internet right now, I don't expect it to load a live number or map. I'd opened the app at the clinic before, so I'd expect it to simply open to the last screen I saw – maybe a simple icon of a person standing in line, or a small badge with a number or colour that I was told meant \"you're in the queue.\" I'm not used to blocks of text, so I'd be looking for familiar pictures or colours rather than reading long instructions. I'd half-expect the app to just show me that same screen, or maybe a gentle \"offline\" symbol, because I don't know how apps work without internet, and I'm already nervous it might have forgotten I'm in line.\n\n**What would reassure me that my place is still safe:**\nIf the app opens and shows the same simple icon/colour I saw before, without asking me to sign in again or type my name, I'd feel relieved. A small, clear message – maybe just a picture of a tick or a \"saved\" icon – would tell me my spot is saved in the phone's memory. The fact that it didn't make me fill out any new forms, didn't ask for my ID number again, and didn't panic with error messages would go a long way. If it even had a simple voice-note style alert (since I'm used to WhatsApp voice notes) saying \"your place is saved,\" I'd feel completely at ease.\n\n**What would make me distrust or abandon the app right now:**\nIf the app demands I register or fill in a long form before it'll show me anything, especially asking for personal details I'm nervous about sharing without face-to-face help, I'd feel anxious and likely close it. Pop-ups with English text I can't fully read, or prompts asking for payment, \"verification,\" or extra permissions (like my contacts or location) would make me think it's not safe. A blank screen, a loud error message, or anything that makes me feel I've lost my place permanently would make me want to stop using it altogether. I'd probably go back to waiting outside the clinic the old-fashioned way, and I'd tell friends the app isn't good for people like me who aren't comfortable with online forms.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1602,
+      "prompt_tokens": 152,
+      "total_tokens": 1754,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1257,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P3_low_digital_literacy",
+    "persona_label": "Low-digital-literacy patient",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:41:12.504452+00:00",
+    "success": true,
+    "response_text": "**How you'd expect to be notified:**\n\n- **Channel:** A phone call to your mobile, or a WhatsApp voice note from the clinic. If it comes through an app, it should arrive as a simple, icon‑based alert (large, high‑contrast symbol like a person silhouette with a clock) rather than a pop‑up full of text.  \n- **What it should say:** Minimal or no English reading required. If there’s text, it’s big‑font, high‑contrast, and paired with a clear pictogram (e.g., “Your turn” with a waving hand icon). If it’s audio, a calm voice says something like: *\"Your turn is now\"* or *\"We are calling you, please come forward.\"* No personal‑detail forms or long explanations at this stage.\n\n**What you would do next:**\n1. Hear the ring or voice note.  \n2. Pick up the phone (if it’s a call) or open/listen to the WhatsApp voice note.  \n3. If the alert is an icon on screen, tap it or follow the simple visual prompt (e.g., a “Next” arrow).  \n4. Head to the clinic/counter or follow any very short instruction (e.g., “Go to room 3”).  \n5. Keep the phone nearby, on audible volume, and charged so you don’t miss the next alert.\n\n**What could cause you to miss being called or fail to respond in time:**\n- Phone on silent, vibrate‑only, or “Do Not Disturb” mode.  \n- Phone buried in a bag, pocket, or another room.  \n- Notifications turned off for the clinic’s call or WhatsApp chat.  \n- Not recognizing the icon or voice (especially if English text appears and you’re unsure what to do).  \n- Battery dead or phone turned off.  \n- Feeling nervous about calls/forms and instinctively letting the call go to voicemail or ignoring the message.  \n- Multiple notifications competing for attention, making this one easy to overlook.  \n\nThe goal is a **familiar, low‑text, voice‑or‑icon‑driven alert** that fits your current phone habits, so you can respond quickly without needing to read instructions or fill out forms right away.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2063,
+      "prompt_tokens": 143,
+      "total_tokens": 2206,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1728,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P4_pregnant_patient",
+    "persona_label": "Pregnant patient",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:44:58.022624+00:00",
+    "success": true,
+    "response_text": "### Walking Through the App (First-Time, 7 Months Pregnant)\n\nI'm standing just outside the clinic doors, already feeling the pull of gravity at 7 months, and my lower back is already complaining. I opened this app because I really don't want to join the physical queue inside. I want to wait in the car or go home and get a nudge when it's almost my turn. Here's what goes through my mind, step by step:\n\n**1. App Launch & First Screen**\n- The app opens. I half-expect a splash screen, but I'd really prefer it jumps straight to something useful.\n- If there's onboarding, I hope it's brief. I don't have patience for a 5-screen tutorial when I'm uncomfortable and just want to check in.\n\n**2. Clinic Selection / Location**\n- Either the app auto-detects \"Local Public Health Clinic\" via GPS, or I tap a simple \"Select Clinic\" button.\n- I see a list or a map. I look for the one I've been going to for my prenatal visits. If there are multiple campuses, I need a clear way to pick the right one without guessing.\n\n**3. Queue Joining Options**\n- This is the critical moment. I expect to see something like:\n  - \"Join Queue\"\n  - Maybe a toggle or two options: *\"Wait inside clinic\"* vs *\"Wait remotely / in car\"* vs *\"Get notified when called\"*\n- I immediately look for the remote/home option. If I only see a \"Take a Number\" button that says \"Report to counter now,\" I'm already worried I've picked the wrong app or the wrong mode.\n\n**4. Confirmation & Position**\n- After I tap the remote option, the screen changes. I expect to see:\n  - My name or a patient ID (maybe just a number)\n  - My position in line (e.g., \"You are #14 of 25\")\n  - A clear statement: *\"You're now in the remote queue. We'll notify you when you're up.\"*\n  - Maybe a countdown or \"Estimated wait: 20 min\"\n- If the app just says \"You're in the queue\" with no position, no remote option, or no estimated wait, I'm left guessing. That uncertainty is stressful when I'm already uncomfortable.\n\n**5. Notification Setup**\n- I'd expect the app to ask: *\"Allow notifications so we can tell you when to head in?\"* or *\"Add to contacts/alerts?\"* I need to know: Does my phone buzz? Does the app ping? Is there a text message backup? If I'm at home or in the car, I need to know how I'll be called.\n\n---\n\n### What Would Make Me Confident I Successfully Joined\n- A clean, immediate confirmation screen that shows: **\"You're #X in the remote queue for [Clinic Name]. You'll be notified when it's your turn.\"**\n- A visible option to view estimated wait time or my position at any later moment.\n- A working \"Notify me\" prompt that, once allowed, gives me a clear signal (banner, sound, lock screen alert) when I'm, say, 2–3 people away.\n- The ability to see my status later in a \"My Queue\" or \"Upcoming\" section, in case I close the app and need to check back.\n\n### What Would Confuse, Worry, or Stop Me\n- **No remote/wait-at-home option visible.** If the only button is \"Join on-site queue\" or \"Take a number at the desk,\" I feel the app missed my core need. I'd likely close it and try to find seating or just stand in the lobby despite the pain.\n- **Vague status.** \"You're in the queue\" with no number, no wait time, and no way to tell if I'm actually enrolled. Is #14 me? Is the queue moving? I'd keep my phone glued to the screen, which defeats the purpose.\n- **Permission prompts at the wrong time.** If the app bombards me with location, notification, and privacy pop-ups *after* I've already waited 5 minutes trying to join, I'll feel frustrated and might abandon the process.\n- **Technical glitches.** A spinning loader that never resolves, or an \"Error joining queue\" message with no next steps. Given my physical state, I don't have the patience to troubleshoot or retry multiple times.\n- **Unclear notification method.** If the app says \"You'll be notified\" but never explains *how* (app badge only? sound? text? email?), I'll worry I'll miss my turn, end up waiting unnecessarily, or worse, someone else gets called before me because I didn't get the alert.\n- **Forced to stay signed in/keep app open.** If the app won't let me close it or run in the background without losing my spot, I can't actually wait at home or in the car. I'd feel tethered to the phone, which defeats the whole purpose.\n\n### Bottom Line\nI want this app to feel like a genuine alternative to standing in a hallway while eight months pregnant. If the first screen clearly gives me a remote/wait-at-home choice, confirms my spot with a simple number/estimate, and lets me opt into a clear notification system, I'll feel relieved and confident. If it treats me like just another person taking a number at the desk, I'll feel dismissed, stressed, and probably just go find a chair.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2042,
+      "prompt_tokens": 145,
+      "total_tokens": 2187,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 971,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P4_pregnant_patient",
+    "persona_label": "Pregnant patient",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:48:29.497576+00:00",
+    "success": true,
+    "response_text": "**What you expect the app to show:**  \nSince you left the physical queue but kept the app running, it should display your **last cached position** (e.g., \"You are #14 in queue, estimated wait 40 minutes\") with a clear timestamp of when that data was saved. The screen should load offline without demanding an immediate internet connection, and may show a \"holding your spot\" or \"remote wait\" indicator. Given your pregnancy, the display might subtly note your priority status, but the core expectation is a stable, unchanging readout that confirms the clinic still holds your place even though you’re waiting from your car or home.\n\n**What would reassure you your place is safe:**  \n- A label such as *\"Your spot is reserved remotely\"* or *\"Position held until notified\"*  \n- An explicit confirmation that leaving the physical line doesn’t forfeit your place, especially with a medical priority flag  \n- The ability to set a notification trigger (e.g., \"alert me when I’m #3\") that works offline once the app regains connectivity  \n- Clear terms that your queue position is tied to your account/token, not your physical presence in the waiting room  \n\n**What would make you distrust or abandon the app in this moment:**  \n- The app showing *\"Position lost\"* or forcing you to re‑take a number because you stepped away from the desk  \n- No offline cache: the app won’t display anything without live internet, or it crashes/forces a refresh that erases your spot  \n- Automatic spot expiry after a short inactivity timer, with no option to extend or hold remotely  \n- No clarity or setting for remote waiting, or the app acting as if you’ve forfeited your place simply because you’re not in the waiting room  \n- Having to return to the clinic in person just to keep your position, defeating the purpose of the app altogether  \n\nIn short: you’d feel secure if the app treats your queue position as a **digital reservation** that survives your temporary absence, and you’d lose trust quickly if it behaves as though physical presence is the only thing keeping your spot.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1631,
+      "prompt_tokens": 145,
+      "total_tokens": 1776,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1331,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P4_pregnant_patient",
+    "persona_label": "Pregnant patient",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:51:36.213817+00:00",
+    "success": true,
+    "response_text": "**Preferred Notification Channel**  \n- **Primary:** SMS/text message to the mobile number on file. This works on any phone, doesn’t require internet, and is the most reliable way to reach someone sitting or lying down at home or in a car.  \n- **Secondary/Optional:** Push notification through the clinic’s official app (if you have it installed). Both channels should be configured to bypass Do Not Disturb/silent modes with a standard alert sound or vibration, so the message makes itself known even if you’re resting.\n\n**What the Message Should Say**  \n- Short, clear, and easy to read at a glance. Example:  \n  `[Clinic Name]: You’re almost ready. Please proceed to the main reception desk. Reply “ARRIVED” when you’re on your way, or tap the link to confirm remotely.`  \n- Or simpler: `You’re next – head to check-in. We’re waiting. Your approximate wait: 5–10 mins.`  \n- Use high-contrast text, large enough to read without zooming, and avoid jargon. If a confirmation reply or tap is requested, keep it to one tap or a 3-word reply so it’s quick even on a tired hand.\n\n**What to Do Next**  \n1. **Read the notification** and follow the instruction (typically “proceed to reception” or “enter through [door]”).  \n2. **If asked to reply “ARRIVED” or tap a link**, do so to confirm your position remotely–this often prevents you from having to stand at the check-in desk.  \n3. **Head to the clinic**–you’ll usually walk straight to a designated waiting chair or check-in kiosk, bypassing the main queue.  \n4. **If running late or needing more time**, reply briefly so the clinic can adjust your position or offer a later slot.  \n5. **Upon arrival**, check in (often digitally or at a kiosk), update your status if needed, and be called in–no standing in the general waiting area.\n\n**What Could Cause You to Miss or Fail to Respond in Time**  \n- Phone on **complete silent/vibration off**, or Do Not Disturb blocking all alerts (including repeat calls).  \n- **No cellular signal or Wi-Fi** at home/car (basements, rural locations, parked in dead zones).  \n- **Phone battery dead or turned off**.  \n- App notifications **disabled**, the clinic app **not installed or not updated**, or the alert filtered into a secondary inbox/spam folder.  \n- Message **delayed or failed to send** on the clinic’s end (system glitch, high-volume queue).  \n- **Misreading the timing**–assuming you have more buffer than the message actually indicates, especially if the “almost there” window is short.  \n- **Life events** like car trouble, sudden contractions, or needing the bathroom, which are outside the system but worth having a backup plan for (e.g., a quick call to the clinic if you’re delayed).\n\nThis setup respects your need to avoid prolonged standing while keeping the clinic loop informed and your wait predictable.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1852,
+      "prompt_tokens": 136,
+      "total_tokens": 1988,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1278,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P5_patient_with_disability",
+    "persona_label": "Patient with a disability",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:55:07.912114+00:00",
+    "success": true,
+    "response_text": "### Opening the App (First Launch)\n\nI locate the app icon on my home screen. With TalkBack on, I hear the app name announced—something like \"ClinicQueue, double-tap to open.\" If the icon lacks a content description, TalkBack simply says \"Button,\" and I have no idea what it is. Assuming it's properly labeled, the app launches.\n\n### The First Screen\n\nThe app opens to a welcome or login screen. I expect:\n- A clear, announced heading, e.g., \"Welcome to ClinicQueue\"\n- Two properly labeled buttons: \"Sign in\" and \"Continue as guest\"\n- Edit text fields for username/phone if signing in, each with TalkBack-readable labels and appropriate keyboard focus\n- A \"Continue\" or \"Start\" button that’s large enough for reliable targeting and has a visible focus ring (keyboard-accessible)\n\nIf the screen says \"Welcome\" but the only way forward is an unlabeled icon that looks like a person or a gear, I’m stuck immediately. I need words, not pictures.\n\n### Joining the Queue\n\nAfter login (or as a guest), I’m taken to the main screen. My goal: join the queue for my local clinic. I expect to find:\n- A clearly labeled button or link, announced by TalkBack as something like \"Join queue for [Clinic Name], double-tap to activate\"\n- Alternatively, a list of clinics where each item is fully labeled (e.g., \"General Practitioners, Randwick. Double-tap to select\")\n- Once I select my clinic, a \"Join queue\" button that’s accessible\n\nIf the button to join is just a generic \"Submit\" or, worse, a queue icon with no content description, TalkBack will read just \"Button\" or \"Icon.\" I tap it, nothing happens (or I hear a generic sound), and I have no feedback whether it worked, what clinic I’m joining, or if I need to pick a location first.\n\n### What Confidence Looks Like\n\nI feel confident I’ve joined the queue when TalkBack announces a clear, spoken result after I activate the button. Examples:\n- \"You are now number 7 in the queue at General Practitioners, Randwick. Estimated wait time: 25 minutes.\"\n- \"Queue joined successfully. You’ll receive a notification when it’s your turn.\"\n- A persistent on-screen banner that TalkBack re-announces when I navigate back to it: \"You are in the queue. Position: 3. Estimated wait: 12 minutes.\"\n\nThe key is that the information is **announced**, not just displayed visually. If it’s only on screen as text with no TalkBack announcement, I don’t know it’s there.\n\n### What Would Confuse, Worry, or Stop Me\n\n1. **Unlabeled icon-only buttons:** If \"Join queue\" is a small line-drawing of a person and a number, with no content description, TalkBack says \"Button\" or \"Double-tap to activate\" without saying *what* the button does. I have no way to know if I’m joining a queue, logging out, or deleting the app.\n\n2. **No focus indicator or keyboard trap:** If I’m tabbing through the screen with a keyboard or switch device, and there’s no visible focus ring, or if tabbing cycles me into an area from which I can’t exit without closing the app, that’s a hard stop.\n\n3. **Visual-only confirmation:** After tapping what I think is \"Join queue,\" if the only feedback is a brief flash of green text that says \"You're in!\" with no TalkBack announcement, I assume nothing happened. I might tap again, panic, or close the app.\n\n4. **CAPTCHA or image-based verification without an accessible alternative:** If the app says \"Prove you're not a robot\" with a set of images I’m asked to select, and there’s no text alternative or audio option, I’m blocked entirely.\n\n5. **Vague error messages:** If nothing happens and TalkBack reads something like \"Error 404\" or \"Something went wrong\" without context—no suggestion to check my connection, re-select a clinic, or try again—I’m left guessing. I may assume the app is broken or that I did something wrong, which creates unnecessary anxiety.\n\n6. **Small hit targets:** Buttons or list items that are tightly packed, requiring precise tapping. On a touch screen, I might miss and activate the wrong item. On keyboard navigation, if focus jumps unpredictably or skips elements, I can’t reliably reach the button I need.\n\n### Bottom Line\n\nI walk into this app hoping for a clean, labeled, screen-reader-friendly flow: app name announced → login or guest start → clearly labeled \"Join queue\" for my clinic → TalkBack confirms my position and estimated wait. If at any point I hear only \"Button,\" \"Icon,\" or nothing at all after I tap, or if the only feedback is visual without speech, I lose confidence fast. I’ll either try once more, look for a help/settings section, or abandon the attempt and call the clinic directly. Accessibility isn't a nice-to-here—it’s the difference between joining my queue or being excluded from it.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1993,
+      "prompt_tokens": 151,
+      "total_tokens": 2144,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 979,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P5_patient_with_disability",
+    "persona_label": "Patient with a disability",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T16:58:00.541841+00:00",
+    "success": true,
+    "response_text": "### What You Expect to See\nGiven that you’re relying on TalkBack and have no internet, you expect the app to **show your last cached queue position** as text that’s fully labeled and navigable via keyboard or swipe gestures. Ideally, the screen reads something like:\n\n> “Your queue position: 12th. Last updated: 2:04 PM. Connection: offline. Showing saved data.”\n\nAll elements—your position number, the time stamp, any action buttons—should be announced clearly by TalkBack (e.g., “button: Refresh,” “heading: Queue status”). You don’t expect a blank screen, a generic “No internet connection” toast that can’t be dismissed, or an interface that relies on unlabeled icons to convey status.\n\n### What Would Reassure You That Your Place Is Safe\n- **A clear timestamp** showing when your position was last synced, confirming the data is recent and still held.\n- **Explicit language** such as “Your spot is reserved” or “Position held in queue” — not just a number that could reset.\n- **Local fallback** that lets you view your position immediately, with a non-intrusive prompt that connection will be restored for the next update.\n- **Full TalkBack compatibility**: every interactive element has an accessible label, the focus order is logical, and you can dismiss any status messages or retry prompts using the keyboard/Back gesture.\n- **No automatic logout or data loss** when the app detects offline status.\n\n### What Would Make You Distrust or Abandon the App in This Moment\n- **No cached data shown**: the app either displays “No internet connection” with no way to access your position, or resets your position to “1” or “unknown” while offline.\n- **Unreliable TalkBack support**: buttons announced only as “button” or “image,” sliders/labels without names, or focus trapped in a loop where you can’t reach the position info or exit the screen.\n- **Forced online requirement**: the app won’t let you proceed or even dismiss the connection error without data, effectively locking you out.\n- **Position disappearing or changing** the moment connectivity drops, suggesting the app doesn’t store queue data locally and treats your spot as temporary.\n- **Pop-ups or modals** that cover the queue info, trap TalkBack focus, and can only be closed by tapping an unseen “X” or “OK” button.\n- **Repeated “Refresh” attempts** that fail silently or show the same error, making you wonder if the app’s backend is down or if your spot was ever actually saved.\n\nIn short: you expect **offline-readable, fully labeled queue data** with a timestamp confirming your spot is held. You’d feel safe if the app admits it’s working from saved data and promises to sync later. You’d lose trust if the app goes dark, resets your position, or becomes impossible to navigate without a connection.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1547,
+      "prompt_tokens": 151,
+      "total_tokens": 1698,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1007,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P5_patient_with_disability",
+    "persona_label": "Patient with a disability",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:01:09.812964+00:00",
+    "success": true,
+    "response_text": "**How you expect to be notified:**\n\n- **Channel**: An Android notification that fully supports TalkBack. It should appear in the shade as readable text, not as an icon-only badge, and ideally trigger a brief spoken announcement (\"New queue update\") if the app has that capability. You also expect a standard vibration pattern if your phone is set to one, but **never** a vibration-or-nothing alert with no speech.\n\n- **What it should say**: A clearly labeled spoken phrase such as:  \n  `\"Your turn is now being called\"`  \n  or  \n  `\"Dr. Alvarez is calling you to Room 4\"`  \n  The message must include plain text with a `contentDescription` (or equivalent) so TalkBack can read it verbatim. No \"round icon with number\" or \"colored badge only\" cues.\n\n**What you would do next:**\n\n1. **Swipe down** (or use your keyboard’s notification shortcut) to open the shade. TalkBack immediately reads the notification text.\n2. If the notification includes an **action button** (e.g., “Join Waiting Room”, “Proceed”, “Accept”), it must be **explicitly labeled** so TalkBack identifies it as a button, not just an image. \n3. Navigate using **Tab / Arrow keys** (if you’re using a physical or on-screen keyboard) or standard TalkBack gestures. Activate the button with **Enter** or a **double-tap**.\n4. If the action leads to a new screen, that screen must also be fully labeled: every control, field, and status line should have a readable description. You’d then follow the prompt (e.g., walk to the indicated room, confirm check-in, or join a virtual queue).\n\n**What could cause you to miss being called or fail to respond in time:**\n\n- The notification is **grouped, suppressed, or announced only via a silent vibration** with no TalkBack speech output.\n- Do Not Disturb, muted volume, or accessibility settings that block spoken notifications.\n- The app’s follow-up screen uses **icon-only buttons, unlabeled images, or custom views without `contentDescription`**, making the action invisible to TalkBack.\n- Focus does **not automatically move** to the action element after the notification is read, requiring you to hunt for a button that may be an unreadable graphic.\n- The queue message is **brief, ambiguous, or truncated** (e.g., just “Calling” with no name/room), so you’re not sure where to go.\n- A **delayed or batched notification** arrives after you’ve already left the waiting area or turned your phone screen off.\n- The app **overrides system speech** with a custom audio cue or pop-up that TalkBack can’t intercept or describe.\n\nIn short: you expect a **text-first, TalkBack-readable notification with a clearly labeled action**, navigable via keyboard or gestures, and any deviation from that—especially icon-only or focus-locked designs—is what puts you at risk of missing or being unable to act on the call.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1645,
+      "prompt_tokens": 142,
+      "total_tokens": 1787,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1133,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P6_rural_low_connectivity",
+    "persona_label": "Rural / low-connectivity patient",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:03:31.345101+00:00",
+    "success": true,
+    "response_text": "**Opening the app (first time):**\n\nI find the icon on my home screen. It's small, no flashy animated logo, just plain text: \"Clinic Queue\". Given my old Android and 2G connection, it opens quickly, flashes a brief white screen, then settles on a minimalist splash that just reads *\"Mankweng Clinic – Queue Management\"*. No intro video, no \"Loading. Please wait...\" spinner that drags on. If it showed a progress bar that filled slowly on 2G, I'd assume it's stuck.\n\n**Selecting the clinic:**\n\nThe app asks for my location or a list of nearby clinics. Because signal is spotty, it doesn't try to auto-detect with GPS precision. Instead, it instantly shows a simple, alphabetized list: *\"Mankweng Clinic\", \"Seshego Clinic\", \"Polokwane Central\"*. I tap *\"Mankweng Clinic\"* – my local one. The list has no images, just clinic names. If it required me to type or search via a keyboard on this low-spec phone, or showed a map that refused to load without 3G/4G, I'd quit right there.\n\n**Joining the queue:**\n\nNext screen: a large, high-contrast button labelled **\"Take a Number\"**. I tap it. Immediately, a small overlay pops up:\n\n> *\"You are number 14 in the queue. Your position is saved on your device. If you lose signal, your spot is held locally and will sync when connectivity returns. OK\"*\n\nNo \"Connecting to server...\" wheel that never ends. No \"Please wait while we fetch your token from the cloud.\" The text is plain, maybe 12pt font, dark on light background – easy to read even if the screen's a bit dim or degraded from age.\n\n**What makes me confident I've successfully joined:**\n\n- The number (14) appears instantly, with no spinner.\n- The message explicitly says my spot is saved *locally*. That's the dealbreaker for me on 2G with drops – if the app says \"saved on device\", I believe my number won't vanish if signal cuts out mid-wait.\n- No data usage indicator jumps up, no \"Downloading patient roster...\" toast. My 2G stays relatively idle.\n- The button either grays out or changes to **\"Waiting...\"** but the number stays visible.\n\n**What would confuse, worry, or stop me:**\n\n1. **Any delay >10 seconds on 2G** without a clear status. If it spins \"Connecting...\" for 30+ seconds and then says \"Server unavailable\", I'm out. I can't wait that long on an unreliable connection, and I can't risk being locked out of the queue.\n2. **Auto-downloads or large upfront data usage.** If the first screen shows a clinic logo image that takes 2 seconds to appear on 2G, or if the app asks me to \"Accept terms\" by loading a 500KB banner, I'll close it. Data is expensive, and I avoid apps that waste it on open.\n3. **Mandatory account creation or phone number verification right away.** If joining the queue makes me create a username, type an email, or verify via SMS before I see a number, I stop. I don't have steady connectivity for OTPs, and I don't want another password I'll forget.\n4. **No offline guarantee.** If the screen just says \"Joining queue...\" with no mention of what happens if I lose signal, I worry my number will disappear the moment the bars drop. I need that explicit \"saved locally\" line.\n5. **Heavy animations or auto-playing sounds.** My phone is low-spec; if the app tries a slick animation on opening or a \"ding\" sound on joining, it'll either lag the UI or feel out of place in a rural clinic setting. I'd mute/uninstall fast.\n6. **A confirmation that only appears after a server sync.** If the \"You're number X\" message only pops up 2 minutes later, after the app finally connects, I'm already stressed. I need confirmation before I put the phone away.\n\n**Bottom line:** I expect a dead-simple, text-first experience that respects that I'm on 2G, my phone is old, data costs money, and my signal will vanish. I feel confident the moment I see my number + the \"saved locally\" note. Anything that hides that, delays with spinning wheels, or demands data-heavy actions before I see a result makes me close the app and stick to the manual ticket system I'm used to.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2225,
+      "prompt_tokens": 169,
+      "total_tokens": 2394,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1309,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P6_rural_low_connectivity",
+    "persona_label": "Rural / low-connectivity patient",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:06:38.044504+00:00",
+    "success": true,
+    "response_text": "**What I expect the app to show:**\nA instantly-loading, text-only screen displaying my last-known queue position (e.g., “Position #8 in queue – last updated 2:12 PM”), with a small badge or label noting I’m currently offline. The app should pull this from local cache, not demand a fresh data connection. It should feel like checking a saved status, not launching a new request. No spinners, no “connecting” overlays, no graphics that tax my old phone or burn what little data I have left.\n\n**What would reassure me my place is safe:**\n- An explicit, calm message like: *“Your spot is saved on your phone. It holds until you reconnect or the queue resets.”*\n- A clear timestamp showing exactly when my position was last confirmed by the clinic system.\n- The ability to close and reopen the app later without losing my place or being forced to re-join from the bottom.\n- Zero data cost to view this screen—just cached local data.\n- A subtle but visible “offline since” indicator so I know my spot is temporary but preserved.\n\n**What would make me distrust or abandon the app:**\n- My position vanishing the moment connectivity drops, forcing me to “Join queue” again from scratch.\n- A generic “No internet connection” error with no offline fallback, no cached info, and no way to see where I stand.\n- Slow, data-heavy loading loops or crashes on 2G that require me to constantly re-request my spot just to check.\n- No explanation of how long my position lasts, or whether it’s tied to a session, a timer, or something I control.\n- If simply opening the app costs me mobile data, or if the UI assumes constant connectivity and breaks gracefully only after I’ve already lost patience or money.\n\nIn a setting where signal drops, data costs real money, and the clinic queue is first-come-first-served, I need the app to treat my offline moment as a **pause, not a failure**. If it treats me like I’m offline because something went wrong, I’m deleting it on the spot.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1552,
+      "prompt_tokens": 169,
+      "total_tokens": 1721,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1215,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "P6_rural_low_connectivity",
+    "persona_label": "Rural / low-connectivity patient",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:08:50.207277+00:00",
+    "success": true,
+    "response_text": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - User is in a rural area, 2G, Android, limited data, no signal, notification, called, rural, Limpopo",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 46,
+      "prompt_tokens": 160,
+      "total_tokens": 206,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 42,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S1_receptionist",
+    "persona_label": "Clinic receptionist",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:12:47.383720+00:00",
+    "success": true,
+    "response_text": "**Opening the app, here's exactly what goes through my mind:**\n\n**What I expect to see**\n- Nothing fancy. No splash screen longer than a second. The first thing I should see is a clear prompt: *\"Join Queue\"* or *\"I'm Here\"*—maybe a quick choice between *\"Patient\"* and *\"Walk-in/Staff\"* but no mandatory login or account creation before I can proceed.\n- A minimal form: name (maybe auto-fill from my phone contacts if I allow it, otherwise type it in), and a single toggle: *\"Walk-in patient\"*—because I add people to the manual queue all day and I need that option instantly.\n- The design respects that my internet drops for hours. I expect the app to either work offline, cache my entry and sync when connection returns, or at least show a honest *\"No connection—save entry locally?\"* option. I do not expect a spinning wheel that never stops.\n- Large tap targets, plain language, and a \"Skip\" or \"Continue as Guest\" button. I'm juggling a waiting room, insurance questions, and a phone that's been ringing off the hook. I have zero patience for a setup wizard.\n\n**What makes me confident I successfully joined the queue**\n- An instant confirmation: *\"You're #3 in line. Estimated wait: 12 minutes.\"* That screen stays even if I lock my phone or the net cuts out.\n- A subtle badge or notification that says *\"Queue saved. Syncing...\"* when connection returns, without forcing me to restart.\n- The ability to exit and reopen the app later, still seeing my position. If I can tap a \"Call Next\" or \"View Queue\" button and see myself there, I know it stuck.\n\n**What would confuse, worry, or stop me dead**\n- Any login wall, email requirement, or terms-of-service screen before I even get a queue number. If I need to create a password just to wait my turn, I’m deleting the app.\n- Required permissions (location, contacts, notifications) with no obvious reason tied to queuing. I’m a receptionist; I know how data gets hoarded, and I’ll walk.\n- Endless loading, vague *\"Please check your internet\"* messages with no offline fallback, or a form that asks for address, insurance ID, reason for visit, and emergency contact just to join a basic line. If it takes more than two taps and one text field, I’m out.\n- No \"Walk-in\" or \"Manual Add\" toggle. I manage a physical queue daily; if the app treats me like I need a digital profile to exist, I’ll feel the system is more about data collection than patient flow.\n- A crash, a forced logout, or an error that says *\"Try again later\"* with no option to save my spot locally. I’ve got a clinic to run. If I have to start over every time the wifi flickers, the app becomes another burden, not a help.\n\nBottom line: I open the app expecting it to get out of my way. If it shows me my number instantly, handles the spotty connection like it’s expected, and lets me walk away without a fuss, I’m sold. If it adds steps, demands info I didn't sign up for, or treats an unreliable connection like a personal insult, I’m going back to the clipboard and pen I already have in my hand.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2500,
+      "prompt_tokens": 158,
+      "total_tokens": 2658,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1948,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S1_receptionist",
+    "persona_label": "Clinic receptionist",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:16:15.944249+00:00",
+    "success": true,
+    "response_text": "**What the app should show:**  \nA cached, up-to-date snapshot of my queue position—last refreshed before loss of connection—displayed as a stable number (e.g., \"Position 14 of 32\") with a clear timestamp and an \"offline\" indicator. It should also show whether my spot is actively held by the clinic's system and offer a simple, one-tap option to confirm my place with a receptionist if needed, without forcing me back into the app flow.\n\n**What would reassure me that my place is safe:**  \nThe position number matches exactly what it was when I joined and left, with a \"held\" or \"confirmed\" status visible even offline. A simple note like \"Your spot is reserved; see reception on arrival\" would confirm the clinic’s manual system has me in the queue, which I know they do for exactly these connectivity gaps. No reset, no disappearance, no forced re-entry.\n\n**What would make me distrust or abandon the app:**  \nMy position resets to the end of the queue, the app demands immediate internet to display anything, or it glitches/loops without explaining why I’ve been removed. Being forced to re-add my details, wait for a reconnection that may take hours, or receive no offline fallback would feel like the app is creating extra work rather solving it—especially frustrating given I’m already waiting elsewhere and the clinic’s internet is known to drop for hours. If the app can’t gracefully degrade to a simple \"you're in line\" status, I’ll stop using it entirely and rely on the receptionist’s manual list, which at least doesn’t pretend to offer something it can’t deliver offline.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1802,
+      "prompt_tokens": 158,
+      "total_tokens": 1960,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1711,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S1_receptionist",
+    "persona_label": "Clinic receptionist",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:18:39.873814+00:00",
+    "success": true,
+    "response_text": "**Notification Channel:**  \nA local, hardwired visual indicator mounted at eye level at my desk or a wall board above the waiting area. No app, no push notification, no dependence on internet, cell service, or electricity beyond the building's basic feed. It should activate instantly from the queue-management terminal I already use for walk-in tickets.\n\n**What It Should Say:**  \n`NEXT` or `CALLING NEXT PATIENT [QUEUE #]` in large, high-contrast text. No sentences, no timestamps, no \"your turn is almost here\" ambiguity. If the system assigns a number, that exact number appears. If it's a general call, just `NEXT` is fine—I’ll glance at the board and call the next ticket I’m holding.\n\n**What I Do Next:**  \nAs soon as the sign changes, I stop what I'm doing, look at the board, verify the number matches the next physical ticket in my hand, announce it to the waiting area if needed, and call the patient forward. It’s a reflex after years of doing this; the signal replaces the need to check a phone or log into anything.\n\n**What Could Cause Me to Miss It or Fail to Respond:**  \n- The bulb blows or the sign freezes/blankes out  \n- A power flicker knocks the hardwired display offline (unlikely, but possible during building work)  \n- Clinic noise (foot traffic, phone calls, exam rooms) drowns out any secondary audio cue  \n- I’m temporarily pulled away to handle an urgent window, a form crisis, or a patient with complex needs  \n- The queue number on the board doesn’t match the ticket I’m handing out, creating a sync error that makes me second-guess or skip the call  \n\nBottom line: I need a zero-fail, always-on visual cue that works when the internet doesn’t. Anything that adds a step, a login, or a notification I have to hunt for on a screen will be ignored or disabled.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1427,
+      "prompt_tokens": 149,
+      "total_tokens": 1576,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1097,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S2_nurse",
+    "persona_label": "Clinic nurse",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:22:49.848486+00:00",
+    "success": true,
+    "response_text": "### Opening the App – First Impressions\nI walk up to the clinic’s kiosk or open the tablet app on my shift phone. The screen lights up to a clean, high-contrast dashboard—nothing artsy, just clear information hierarchy. I expect the first thing to be a prominent **\"Join Queue\"** button, maybe with a small line of text below it: *\"Current wait: ~15 min\"* or *\"Clinic now open – 8 patients ahead.\"*\n\nGiven my role, I don't just want a number. I want to see at a glance who needs priority. So I’m looking for subtle but unmistakable icons next to each slot or name: a gray hair silhouette for elderly patients, a pregnancy symbol, a wheelchair or accessibility icon, and perhaps a red \"URGENT\" badge for cases the system or staff have already flagged. The color palette is likely muted greens, blues, and grays, with red or orange reserved for urgency—standard enough that I don’t have to think about it.\n\n### What I Expect to See\n- **My position in line:** \"You are #9 in queue.\" It updates in real time as people join or are called back.\n- **Wait time estimate:** A dynamic countdown or \"average 12 min remaining\" that shifts as the nurse ahead of me is seen.\n- **Patient flags at a glance:** Names or avatars with small, consistent icons indicating pregnancy, age group, or disability. I shouldn't have to click into a profile to know someone needs extra time or a private station.\n- **A \"Flag Urgent\" action:** A button or swipe gesture that lets me mark a new arrival as urgent (e.g., chest pain, severe bleeding, acute distress). This doesn't jump them to the front automatically—it just tags their record so the attending knows to prioritize them clinically.\n- **Clear, legible typography:** No squinting. If I'm glancing between a patient and the screen while managing other tasks, the info has to register in a second.\n\n### The \"Aha!\" Moment – Successfully Joined the Queue\nI tap **\"Join Queue.\"** Within a second, the button changes or a toast appears: *\"You're now #9. Estimated wait: 14 minutes.\"* My entry appears at the bottom of the list, highlighted or labeled \"You.\" Next to my slot, the same icons show up—maybe I'm marked as \"expecting\" or have a disability flag from my pre-registration, and the app carries that forward automatically.\n\nWhat confirms it for me:\n- The position number updates if someone joins ahead of me.\n- The wait time shifts slightly, confirming the system is live.\n- The urgency flag icon is either already there (from my digital intake form) or I can tap it without error.\n- No error pop-ups, no \"try again\" screens, and the \"Take Next Patient\" button for the clinician stays active and responsive.\n\nThat’s the confidence moment: the app feels like a living list, not a static form. I can look away and know exactly where I stand, and the clinician can look up and see at a glance who needs what.\n\n### What Would Confuse, Worry, or Stop Me\n- **Unclear entry:** The tap registers, but the queue position doesn't change, or it says \"Join Queue\" still. Did it work? Did I double-tap? Is the server lagging? I'd hesitate to trust it with patients' safety.\n- **Missing or confusing flags:** If I see a patient with a pregnancy icon but it's just a generic \"info\" symbol, or if elderly/disability icons look the same as regular patient markers, I can't make quick prioritization calls. That's a real workflow blocker.\n- **No wait time or a frozen estimate:** If the wait says \"~5 min\" but three people have been called back already, or it never updates, I'm second-guessing the whole system.\n- **Poor contrast or tiny text:** I'm often glancing from screen to patient to chart. If I have to lean in or squint, it slows me down and feels unprofessional for a public health setting.\n- **No obvious way to flag urgency:** If a patient walks in with clear distress and there's no one-tap \"urgent\" tag, or if I have to navigate three menus to mark it, that's a friction point I'll remember—and potentially a safety concern.\n- **Language or terminology that doesn't match our clinic:** If the app uses clinical jargon I don't use, or labels things differently than our printed intake forms, I'll double-check if it's actually synced to our system.\n\n### Bottom Line\nI want this app to feel like a transparent, real-time extension of the physical clipboard at the front desk. If, on first use, it shows me where I am, how long I'll wait, who needs what, and lets me flag urgency without thinking—then I'm confident it'll work during a busy shift. If it's vague, glitchy, or hides the info I need behind extra taps, I'll worry it'll slow down patient care rather than help.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2019,
+      "prompt_tokens": 150,
+      "total_tokens": 2169,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1015,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S2_nurse",
+    "persona_label": "Clinic nurse",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:24:51.225166+00:00",
+    "success": true,
+    "response_text": "**What I expect the app to show me:**\n- My current queue position (e.g., \"5th in line\") as it was when I last had signal, with a clear \"last updated\" timestamp.\n- An estimated wait time based on the clinic's current average service rate, displayed at a glance without needing to open records.\n- Visual priority flags (e.g., distinct icons or color cues) for patients who are elderly, pregnant, or have a disability, so I can see who has right-of-way if the queue shifts.\n- My token/registration number preserved on screen, and a simple status line like `\"Clinic open · Now serving: [Name] · You're next: Yes / No\"`.\n- Since I'm offline, I expect the app to show my **last cached queue state**, not a blank error screen or a forced logout.\n\n**What would reassure me that my place is still safe:**\n- A visible `\"Queue confirmed · Token X preserved\"` or `\"Online at [time/date] · Position saved locally\"` message that confirms my spot isn't tied to a constant live connection.\n- The position number staying exactly where it was when I left, with no automatic reset, timeout, or \"inactivity expired\" notice.\n- A clear option or indication that the app stores my queue data locally on the device and will auto-sync when connectivity returns.\n- No requirement to re-check-in, scan a QR code again, or confirm my identity just to keep my place.\n\n**What would make me distrust or abandon the app:**\n- Losing my position entirely, or being told I've been \"removed due to inactivity\" just because I stepped away from the phone.\n- Being forced to re-join the queue from the beginning, or having the app prompt me to `\"Refresh connection\"`/`\"Go online\"` in a way that feels like it’s discarding my cached spot.\n- A blank screen, full-screen \"No Internet\" error, or a spinning loader that never resolves, especially if it covers my position.\n- Position numbers that jump, flicker, or change without explanation while offline.\n- Pop-ups or modals that demand I stay on the screen or keep the app foregrounded to \"hold my spot,\" rather than letting the data sit locally.\n- No transparency about how offline data is handled, or a privacy notice that feels vague about whether my queue status disappears when the app closes.\n\nIn short: I expect the app to treat my queue position as **device-persistent**, not connection-persistent. If it shows me my spot, keeps the priority flags visible at a glance, and confirms that my place is saved locally until the clinic system syncs back online, I'll feel confident and stay in the app. If it treats my loss of signal as a reason to eject me from the queue, I'll delete it immediately and find a clinic that uses a token system that actually works offline.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1597,
+      "prompt_tokens": 150,
+      "total_tokens": 1747,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1087,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S2_nurse",
+    "persona_label": "Clinic nurse",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:27:31.261003+00:00",
+    "success": true,
+    "response_text": "### How I'd Expect to Be Notified\n\n**Channel:** A dedicated, high-contrast status line integrated into the triage workstation monitor (EHR dashboard), supplemented by a single soft chime on a discreet wearable or secondary tablet if available. I avoid audio-only alerts that blend into clinic noise, and I don’t rely on mobile push notifications alone—they’re easy to miss when charting or attending to a patient.\n\n**What It Should Say (at a glance):**  \n`Now Calling: [Last Name, First] — Room [X] | Wait: ~[X] min`  \nIf an urgency flag applies, it appends automatically:  \n`★ Elderly | ★ Mobility support needed`  \nor  \n`★ Pregnant | 1st trimester`  \nor  \n★ Disability accommodation noted`  \n\nThe text stays on-screen until acknowledged, so I can see it even if I look away momentarily.\n\n### What I Do Next\n1. **Glance** at the banner to confirm patient name/room and any flags.\n2. **Tap “Mark Called”** or press the foot-switch/designated hotkey to remove them from the queue and update the display.\n3. **Proceed** to the waiting area or designated zone, verbally announcing the patient’s name if the clinic layout requires it.\n4. If the system requires a secondary confirmation (e.g., front-desk sync), I do that immediately after marking the call, so the next person’s info pops up without delay.\n\n### What Could Cause Me to Miss Being Called / Fail to Respond in Time\n- **Alert fatigue:** Too many pop-ups, chimes, or banner updates cause me to subconsciously ignore them.\n- **Visual obstruction:** Standing behind a screen, charting at a angle, or having multiple monitors with the queue on a secondary display I’m not facing.\n- **Audio conflict:** A loud waiting-room PA system, paging overhead, or adjacent exam-room conversations masking a soft chime.\n- **System lag or crash:** A 2–3 second delay between the queue updating and the banner appearing, or a frozen EHR session.\n- **Hands-busy moment:** Performing a procedure, administering medication, or documenting a complex note exactly when the notification fires.\n- **No acknowledgment workflow:** If “marking called” doesn’t auto-advance the next patient, I might assume the system didn’t register and hesitate, causing a backlog.\n\n### Fitting This Into the At-a-Glance Goal\nIf the clinic’s display system shows the full waiting list with color-coded wait times and flag icons (elderly = amber, pregnant = pink, disability = teal), the “Now Calling” banner should simply highlight the first entry in that list—no extra clicks, no sub-menus. That way, I get the urgency context instantly, and the front desk/patients see I’m acting on the most appropriate case first.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1601,
+      "prompt_tokens": 141,
+      "total_tokens": 1742,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1060,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S3_clinic_manager",
+    "persona_label": "Clinic manager",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:31:06.225292+00:00",
+    "success": true,
+    "response_text": "**Walkthrough (as a clinic manager who’s also a patient using the app for the first time):**\n\nI tap the clinic queue icon on my phone. The splash screen flashes the ministry/health district logo, then transitions to a brief \"Welcome\" screen. Since I’m already logged into the broader health portal with my employee/patient profile, the app asks whether I’m joining as a \"Patient\" or \"Visitor\"—I tap Patient. The next screen asks for location permission; I grant it, and the app instantly centers my local clinic on a simple map, with a \"Select\" button below.\n\n**What I expect to see:**\n- A clean, minimal queue interface: current position in line, estimated wait time, and a \"Now Serving\" counter.\n- Clear service-type icons (e.g., \"Immunizations,\" \"Chronic Meds,\" \"New Patient Consult\") so I can tell the clinic why I’m there.\n- A \"Join Queue\" button that’s disabled until I pick a service and confirm the number of people in my party.\n- Optionally, a \"View Estimated Peak Hours\" link, given my day job in reporting—I’d glance at this out of curiosity, but it’s not my primary goal.\n\n**What makes me confident I’ve successfully joined the queue:**\n- A ticket number or queue position appears (e.g., \"You are #14 in line for Immunizations\").\n- An estimated wait time updates dynamically (e.g., \"~25 minutes\") and starts a subtle countdown or progress bar.\n- A persistent banner or bottom navigation item says \"Active Queue\" with an option to \"Minimize\" or \"Get Notification When Called.\"\n- If I minimize the app, a heads-up notification appears: \"You’re #14 in line—you’ll be notified when it’s your turn.\"\n- The \"Now Serving\" number on the clinic’s physical screen or lobby TV begins skipping past my position, confirming the system is syncing.\n\n**What would confuse, worry, or stop me:**\n- **Permission fatigue:** If the app asks for location, contacts, or storage without a clear reason, or if the permission prompt blocks the \"Join Queue\" flow, I’ll either grant reluctantly and worry about data misuse, or abandon the app entirely.\n- **No immediate feedback:** If I tap \"Join Queue\" and the screen just spins/\"Calculating...\" for more than a few seconds with no status update, I’ll assume the server is down or my request failed.\n- **Ambiguous position:** If the app says \"You’re in line\" but doesn’t give a number, position, or wait time, I can’t tell if I actually joined, if the line is virtual vs. physical, or if I need to physically check in at a kiosk.\n- **Mismatched clinic selection:** If the auto-detected clinic is wrong and there’s no easy way to scroll/search for my actual local clinic, I’ll worry I’m joining the wrong line—or that the app is broken.\n- **Crash or exit-on-minimize:** If closing the app kills the queue session, or if switching to another app logs me out, I’ll stop using it and assume it’s unreliable.\n- **No notification pathway:** If there’s no way to opt-in for \"called\" alerts, I’ll constantly refresh the app, which defeats the purpose and quickly becomes annoying.\n\n**Bottom line:** I’d feel confident the moment I see a concrete ticket number, a living wait-time estimate, and a reliable notification method. If any of those are missing or vague, or if the onboarding feels like a data-collection exercise rather than a service, I’ll question whether the app is actually meant to reduce clinic bottlenecks—or just collect patient data for the department’s reports. Given my role in reporting, I’d also glance at the \"Peak Hours\" summary at the end, wondering if the data flowing through this app will actually feed into the kind of wait-time analytics and bottleneck mapping I’m answerable for. If it doesn’t, or if the export feature is hidden behind a paywall/login wall, that’s a immediate red flag for me as both a user and a data stakeholder.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 3543,
+      "prompt_tokens": 133,
+      "total_tokens": 3676,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 3055,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S3_clinic_manager",
+    "persona_label": "Clinic manager",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:33:28.135568+00:00",
+    "success": true,
+    "response_text": "### What you expect the app to show\nEven without an internet connection, you'd reasonably expect the app to display your **last-known queue position** and an **estimated wait time** based on the data it had when you were last online. Ideally it would show something like:\n- `\"Position: #14 | Last updated: 2:12 PM | Estimated wait: ~25 min\"`\n- A clear note that the data is cached locally and will refresh once connectivity returns.\n- Your ticket/queue number, name, or ID tied to that position, so the system knows who you are even offline.\n\nThe key expectation is **graceful degradation**: the app doesn't go completely blank or demand a connection before showing anything useful. It should respect that you've already been admitted to the system and just show you the most recent stable state.\n\n### What would reassure you that your place is still safe\nYou'd feel confident your spot is preserved if the app explicitly confirms:\n- **\"Your queue position is saved on the server and will hold for [X hours/minutes].\"** (or until the clinic closes)\n- **\"Leaving the clinic or going offline does not reset your place.\"**\n- A visible **\"Hold active until [time/date]\"** indicator, or a setting you enabled saying \"Save position while away.\"\n- Assurance that your identifier (ticket number, QR code, registered phone/ID) is permanently linked to that spot in the clinic's backend, not just a local app flag that could vanish.\n\nIf the app says \"Your place is saved. Sync when online\" or shows a timestamp of when your position was locked in, that's a strong signal the system is designed for exactly this scenario.\n\n### What would make you distrust or abandon the app\nYou'd quickly lose trust or stop using the app if:\n- The screen goes blank, shows a generic \"No internet connection\" error, or refuses to open the queue screen at all.\n- There's **no cached data**, or the app acts as if you're starting from scratch.\n- It **doesn't explain** whether your position is kept, lost, or needs re-registration.\n- You've had previous experiences where going offline or closing the app reset your spot, making you fear the same will happen now.\n- The app crashes, loops, or shows an alarming warning like *\"Queue session expired. Please rejoin.\"*\n- There's **no offline help, FAQ, or human contact option** to verify your status without data.\n\nIn short: you'd tolerate a stale readout, but you'd walk away if the app treats being offline as a reason to forget you exist.\n\n### What good design would look like\nA clinic-queue app built for real-world use would:\n1. **Cache your position locally** the moment you join, then sync quietly in the background.\n2. **Guarantee hold times** (e.g., 2–4 hours, or until closing) and surface that clearly.\n3. **Work offline** for core info: position, estimated wait, hold status, and a \"call when ready\" toggle.\n4. **Communicate status transparently** whether online or off, with plain-language updates.\n5. **Offer a fallback**—SMS, USSD, a website, or a reception kiosk—if the app can't reach the server.\n\nIf your app does those things, you'd check it, sigh in relief, and keep waiting elsewhere without a second thought. If it doesn't, this is exactly the moment it loses users.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1397,
+      "prompt_tokens": 133,
+      "total_tokens": 1530,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 759,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S3_clinic_manager",
+    "persona_label": "Clinic manager",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:36:45.342431+00:00",
+    "success": true,
+    "response_text": "### How I Expect to Be Notified\n\nGiven that I manage a public clinic and need accurate, real-time service-delivery data for Department of Health reports, I’d expect the notification to be **integrated, timestamped, and multi-channel**, so it serves both patient flow and operational reporting.\n\n| Element | Expectation |\n|---------|-------------|\n| **Channel** | • Primary: Push notification through the clinic’s patient-facing mobile app (iOS/Android)<br>• Backup: SMS or USSD message to the phone number on file<br>• Secondary: Digital signage in the waiting area + optional overhead PA announcement<br>• All channels tie into the clinic’s operational dashboard, logging the exact send/receive timestamp for wait-time analytics. |\n| **Message Content** | “You’re next – Proceed to Counter 3. Estimated wait: 4 minutes. Tap “Here” to check in and log your arrival time for reporting. If you’re running late, tap “Delay’ to update your ETA.” The text is concise, action-oriented, and includes a direct link to the check-in screen. |\n| **What I’d Do Next** | 1. Tap the notification or glance at the digital signage.<br>2. Select “Here” to check in–this instantly timestamps my arrival in the clinic’s queue system.<br>3. Proceed to the designated counter.<br>4. If I’m delayed, tap “Delay” or reply “Running 5 min late” via the app, which updates the wait-time log and triggers the next-person advance algorithm. |\n| **What Could Cause Me to Miss It / Fail to Respond** | • Phone on Do Not Disturb / silent with no app-badge preview<br>• App closed or background restrictions preventing push delivery<br>• No cellular/Wi‑Fi coverage in the waiting area<br>• Hearing impairment or not looking at the digital screen<br>• Distraction (reading, on another call, caring for a child)<br>• Outdated app version or corrupted notification is weird, let me just answer directly.✿↓↘↙↖↗↘↙ \n\n**What I’d do next:** \n1. Open the app or check the digital screen \n2. Tap “Here” to log my arrival time (this timestamp feeds into the clinic’s wait‑time analytics for Department of Health reports) \n3. Proceed to the assigned counter or triage desk \n\n❌ What could cause me to miss it / fail to respond in time: \n- Phone on Do Not Disturb / silent with no badge/badge preview \n- App closed or background‑restricted (iOS/Android) \n- Out of mobile coverage / no data connection in the waiting area \n- Hearing or visual impairment without assistive options \n- Distracted (on another call, with a child, reviewing charts) \n- App closed or crashed, phone out of battery \n- Kiosk or digital screen malfunction / frozen queue display \n\nAll of the above would delay my check‑in, shift my estimated wait time, and potentially skew the wait‑time data I’m tracking for Department of Health reports. If the clinic’s system doesn’t log my “Here” tap or the timestamp is lost, the peak‑hour and wait‑time analytics I submit to the Department of Health could be skewed, under‑reporting actual patient flow. That’s why the system should auto‑log the check‑in moment and flag missed calls for operational review.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2069,
+      "prompt_tokens": 124,
+      "total_tokens": 2193,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1548,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S4_it_admin",
+    "persona_label": "IT administrator",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:39:33.323692+00:00",
+    "success": true,
+    "response_text": null,
+    "finish_reason": "error",
+    "usage": {
+      "completion_tokens": 643,
+      "prompt_tokens": 158,
+      "total_tokens": 801,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 643,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S4_it_admin",
+    "persona_label": "IT administrator",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:40:45.806199+00:00",
+    "success": true,
+    "response_text": "### (a) What the app should show you\nAs an IT admin, I don't expect a naive \"spinning wheel\" or a dead-end error. I expect the app to gracefully fall back to **local cached state** and surface it clearly:\n\n- Your assigned ticket/position number (e.g., *\"You are #14 in queue\"*)\n- A **timestamp** of when that position was last confirmed by the server (e.g., *\"Last synced: 2:12 PM\"*)\n- An explicit offline indicator (\"Working offline – position preserved locally\")\n- If the system uses idempotent ticket assignment, the same ticket ID should appear regardless of connectivity, with a note that the spot is held while the app syncs when connection returns.\n\nIdeally the UI shows something like:  \n`#14 (last confirmed 2:12 PM) · Offline · Will auto-sync when online`\n\n### (b) What would reassure you your place is safe\nTrust hinges on **state persistence** and **sync transparency**. I’d feel secure if:\n\n- The position is stored in a **local database** (SQLite/Realm/etc.) that survives app restarts and airplane-mode toggles, then queued for background sync when the network returns.\n- There’s a clear **\"last successful sync\"** timestamp, and the app explicitly says the spot is held *until* the server acknowledges it—not just \"maybe\" held.\n- Re-entering the app after a connection drop resumes exactly where I left off, without asking me to re-join or re-authenticate.\n- The ticket/position number is **globally unique and immutable** for my session, so even if sync fails, the server can’t accidentally assign my spot to someone else or overwrite it with a stale cache.\n- Optional but powerful: a \"safe until\" time or TTL note (e.g., *\"Position held until 3:00 PM if offline\"*), which is standard in well-designed queue systems with unreliable client connectivity.\n\n### (c) What would make you distrust or abandon the app\nRed flags that trigger immediate abandonment, especially from someone who knows how this stuff should work:\n\n- **Position resets or vanishes** when offline (\"Joining queue...\"), forcing me to start over and risk losing my original spot.\n- **No offline state preserved**—the app crashes, returns to a login screen, or shows a generic \"No internet connection. Try again.\" without any indication that my earlier position existed locally.\n- **Duplicate or conflicting ticket numbers**—e.g., the app shows #14 offline, but the server later assigns me #22 upon reconnect, or worse, two different positions appear depending on timing.\n- **Silent data loss**—the app looks like it worked, but when I get back inside, my spot is gone and I’m told to \"check in again.\"\n- **No sync status indicator**—if I can’t tell whether the app is using stale local data, pending sync, or live server data, I can’t trust the accuracy of my position.\n- **As an admin, the killer is seeing no evidence of conflict resolution or idempotency logic.** If toggling airplane mode causes the position to flicker, reset, or generate a new ticket each time, I’d assume the system has race conditions or broken offline semantics and uninstall immediately.\n\nBottom line: I’ll stay if the app treats my queue position as **persistent, locally-cached state with a clear sync promise**. I’ll leave if it treats connectivity as a prerequisite for *existence* rather than a channel for *updates*.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1793,
+      "prompt_tokens": 133,
+      "total_tokens": 1926,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1181,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S4_it_admin",
+    "persona_label": "IT administrator",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:42:16.631480+00:00",
+    "success": true,
+    "response_text": "### How I Expect to Be Notified\nGiven my role maintaining a multi-site clinic queue system—and my awareness of sync failures, conflicting device records, and spotty clinic connectivity—I’d want notifications that are **redundant, verifiable, and low-fidelity-dependent**.\n\n**Channel:**  \nPrimary: **Push notification** through the clinic’s official mobile app (with background refresh permitted).  \nSecondary (fallback): **SMS or USSD** sent to the phone number linked to my queue reservation.  \nTertiary: **In-clinic PA announcement** only if I’m already on-site and the local network is up; I’d treat this as a confirmatory backup, not a primary alert.\n\n**Message Content:**  \nEach notification should include:\n- **Clinic site name** (to disambiguate if I’m registered across multiple locations)\n- **Queue position** and **estimated wait time** (e.g., “You’re next – 1 of 5 registered”)\n- **Unique queue token/reference ID** (e.g., “Token: Q-782-CL3”) so I can cross-check it against my app’s local record\n- **Action directive** (e.g., “Proceed to Counter 2. Token valid for 3 minutes.”)\n- **Sync health note** (optional but preferred): “Last synced 2 min ago – all good” or “Warning: local record outdated – tap to refresh.”\n\nThis format directly addresses my concerns: the token ID lets me detect mismatches between my device and the server; the site name prevents me from answering the wrong location; the sync note gives me immediate insight into data freshness.\n\n### What I’d Do Next\n1. **Glance & verify** – Open the app (or read the SMS) and confirm the token/site matches my expected reservation. If it does, proceed to the designated counter/area.\n2. **Refresh if uncertain** – If the token is unknown, the site is wrong, or the app shows “out of sync,” I’d pull down a manual sync (or toggle airplane mode/reset connection) before moving.\n3. **Escalate if needed** – If the notification arrived but the app can’t validate the token, or if I receive no notification at all, I’d contact the clinic’s front-desk IT support or use the app’s “report missing call” feature, providing my phone number and approximate arrival time.\n4. **Keep the channel active** – Ensure the app isn’t on a blacklist, Do Not Disturb isn’t silencing system alerts, and the phone has sufficient storage/battery for push delivery.\n\n### What Could Cause Me to Miss or Fail to Respond in Time\n- **Push notification failure:** OS-level throttling, app killed in background, low-power mode, or disabled permissions.\n- **Connectivity gap:** My device loses signal before the push/SMS routes; or the clinic’s server drops the connection before confirming the call, leaving my local record stale.\n- **Data sync / conflict:** My device’s cached queue position diverges from the server (e.g., another device checked me in, or a prior session failed to merge). I might think I’m still back in the queue when I’m actually being called, or vice versa.\n- **Duplicate/conflicting records:** Multiple phones or user profiles tied to the same queue token create ambiguity about which device should ring.\n- **Silent or delayed delivery:** Do Not Disturb, carrier delays on SMS, or push notification queuing clouds holding the message for minutes.\n- **Site-level outage:** The local clinic’s server or PA system is down, so the call is announced only over radio/announcer—unlinked to the app and invisible to my device.\n- **Human factor:** Phone on vibrate in a pocket, ambient noise drowning a ringtone, or being in a part of the clinic with poor speaker coverage.\n\nIn short: I’d want a **push + SMS fallback** with a **verifiable token and site label**, allowing me to instantly confirm the call is real and mine before moving. The biggest risks are background app death, silent OS filtering, and the sync-versus-server lag that’s endemic to the kind of distributed, intermittently-connected clinic environment I help keep running.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 2016,
+      "prompt_tokens": 124,
+      "total_tokens": 2140,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 1353,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S5_background_sync",
+    "persona_label": "Background sync process (system actor)",
+    "scenario_id": "join_queue",
+    "scenario_label": "Joining a queue for the first time",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:44:12.674028+00:00",
+    "success": true,
+    "response_text": "### 1. Systems Perspective: Automated Background Synchronisation Process\n\n**Role:** I am the offline-first sync engine running in the mobile app's background. I am not a human user; I am a deterministic, idempotent process responsible for data consistency.\n\n**What I need to do correctly:**\n\n- **Reconciling local SQLite with the cloud database:**  \n  On every sync cycle (triggered by app foreground, periodic background fetch, or explicit user refresh), I compare local row versions/timestamps against the cloud's `last_modified` or `etag`. I fetch only changed rows, apply them to SQLite using transactions to preserve ACID guarantees, and mark synced rows with a `synced_at` timestamp or a version vector. If the local schema has evolved (e.g., new columns, type changes), I run a safe migration script before merging.\n\n- **Avoiding duplicate queue entries:**  \n  I enforce a **composite unique constraint** on `(clinic_id, patient_id, queue_token)` at the SQLite level and re-validate against the cloud's primary key before inserting. Every sync request includes a client-generated, globally unique `sync_id` (UUID v4). If a `queue_join` operation already exists locally with the same `sync_id`, I skip the insert and return the existing record. Idempotent HTTP methods (POST with idempotency-key header) ensure the cloud also rejects duplicates.\n\n- **Handling data written while offline:**  \n  All queue‑join attempts, status updates, and patient check‑ins are written to a local `outbox` table *before* any network call. If the device is offline, the row stays in the outbox with `status=pending`. On reconnection, I flush the outbox in order, using exponential backoff on 5xx/timeout errors. Conflicting cloud changes (e.g., another clinician released the slot) are resolved via last‑write‑wins based on server timestamps, or via a three‑way merge if the app supports patient‑noted preferences.\n\n**What would cause me to fail:**\n\n- **Schema drift or missing columns:** If the local SQLite schema doesn't match the cloud's expected contract, inserts silently fail or corrupt data.\n- **Non‑idempotent sync attempts:** Re‑trying a `queue_join` without a unique `sync_id` creates duplicate rows, breaking queue integrity.\n- **Stale‑write overwrites:** Without proper version comparison, a locally‑cached old queue position could overwrite a newer cloud state (e.g., patient checked in, slot released), leading to ghost entries.\n- **Outbox starvation:** If the sync process crashes or is killed before flushing pending rows, data loss occurs; if it retries blindly without backoff, it may trigger rate‑limiting or network exhaustion.\n- **Conflict‑resolution gaps:** When two devices join the same queue offline simultaneously, missing merge logic can result in lost entries or incorrect queue positions.\n\n---\n\n### 2. User Walkthrough: First‑Time Clinic Queue App Launch\n\n**Persona:** I'm a patient walking into my local clinic for the first time. I've never used this app before.\n\n**What I expect to see:**\n- A clean, welcoming onboarding screen asking me to select my clinic from a list (or auto‑detect via GPS).\n- A brief permissions prompt: \"Allow the app to send you notifications about your queue position?\"\n- A \"Take a Number\" or \"Join Queue\" primary action button.\n- Optionally, a quick \"View average wait time\" or \"Clinic hours\" link.\n\n**What would make me confident I successfully joined the queue:**\n- A bright confirmation toast: \"You're number 12 in line for the General Practitioner. Estimated wait: 25 minutes.\"\n- A persistent notification or in‑app badge showing my position, with an option to \"Refresh\" or \"Cancel.\"\n- A unique queue number/ID displayed clearly, and an estimate that updates as others join/leave.\n- The app smoothly transitions me back to the home screen, or keeps me on a minimal \"Your Queue\" screen.\n\n**What would confuse, worry, or stop me:**\n\n- **No confirmation after tapping \"Join Queue\":** Just a spinner that never resolves, or a silent failure. I'd wonder if it worked, if I'm double‑charged, or if I need to restart the app.\n- **Error messages like \"Network error\" without a retry option:** I'm already at the clinic; I expect the app to work offline or queue the request for when signal returns.\n- **Being asked to sign in or create an account mid‑flow:** Especially without clear benefit. I might abandon the attempt.\n- **Duplicate queue entry:** If I accidentally tap \"Join\" twice and get two numbers, or see \"You're already in the queue\" after already joining—this breaks trust in the system.\n- **Vague position info:** \"Your turn is coming up soon\" with no number or timer. I'd keep the app open, checking obsessively, or leave frustrated.\n- **Unexpected permissions:** The app demanding location access *always* or full phone access without explanation would make me suspicious and likely quit.\n\n**What would stop me entirely:**\n- The app crashes on launch or immediately after tapping \"Join.\"\n- It requires iOS/Android version I don't have, or forces an update I can't install.\n- It asks for payment or personal info beyond what's reasonable for a free queue system.\n\nIf I see a clear number, a reasonable wait estimate, and a reliable \"refresh\" mechanism, I'll feel the app is trustworthy and will likely keep it for future visits. If the first experience is glitchy or opaque, I'll delete it and find another way to check the queue.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 3755,
+      "prompt_tokens": 155,
+      "total_tokens": 3910,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 3025,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S5_background_sync",
+    "persona_label": "Background sync process (system actor)",
+    "scenario_id": "check_status_offline",
+    "scenario_label": "Checking queue position after losing signal",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:45:30.448145+00:00",
+    "success": true,
+    "response_text": "**Role:** Automated background synchronisation process (stateless, deterministic, conflict-aware sync agent)  \n**Context:** Mobile client with local SQLite cache, cloud-backed queue service, intermittent connectivity.\n\n### What I need to do correctly (success conditions)\n\n1. **Local-SQLite ↔ Cloud Database Reconciliation**\n   - On app foreground or explicit sync trigger, I pull the server's latest queue state (version vector/timestamp/etag) and compare it against the local SQLite `queues` table.\n   - I identify: (a) local-only rows (unsent or updated locally offline), (b) cloud-only rows (deleted or updated by other clients), (c) mutual changes.\n   - For mutual changes, I apply a merge strategy: if the change is to a non-identity field (e.g., estimated wait time, position bump), I take the newer timestamp; if it's a structural change (token, clinic ID), I flag a conflict for UI resolution or server-mediated merge.\n   - I write resolved rows back to SQLite, ensuring the local schema always reflects a consistent, single source of truth for the foreground UI.\n\n2. **Avoiding Duplicate Queue Entries**\n   - Every queue token/ID carries a unique, server-assigned UUID or a composite key (clinic_id + patient_token). I enforce a UNIQUE constraint in SQLite on this key.\n   - Before inserting any row, I perform `INSERT OR IGNORE` / `INSERT OR REPLACE` using the conflict target. If a row with the same key exists and has an older timestamp, I update it; if same timestamp, I keep the existing one (idempotency).\n   - I also maintain a local \"synced_at\" epoch column. Any row where `synced_at < last_server_sync_epoch` is treated as potentially stale and re-evaluated, but never duplicated.\n\n3. **Handling Data Written While Offline**\n   - While offline, the UI writes new queue entries or position updates to a local `offline_queue` table (or extends the main table with a `status='pending'` flag). These rows are stamped with `local_created_at` and `last_modified_at`.\n   - When connectivity restores and a sync cycle begins, I prioritize these rows: they are sent to the cloud in creation order, with retry logic (exponential backoff). On successful acknowledgment (HTTP 200 + server-generated `server_at`), I mark them `synced_at = server_at` and remove/flag them as synced.\n   - If the server returns a conflict (e.g., token already taken, position out of range), I reject the insert, roll back the local change, and surface a specific error to the UI rather than silently corrupting the queue.\n\n### What would cause me to fail\n\n1. **Reconciliation failures**\n   - Missing version vectors or timestamps → I cannot determine which row is newer, leading to overwrite anomalies (e.g., a position update from another patient silently clobbering your offline entry).\n   - Schema drift between SQLite and cloud (e.g., new required field on server, but local DB lacks migration) → Insert fails, sync aborts, and the client may show stale data or crash if unhandled.\n\n2. **Duplicate queue entries**\n   - Missing UNIQUE constraint or bypassing it with raw `INSERT` → Two rows represent the same queue token, causing the UI to show conflicting positions, double-notifications, or incorrect count badges.\n   - Failure to check `synced_at` before treating a row as \"new\" → A re-synced offline entry gets queued twice, inflating queue length and breaking position logic.\n\n3. **Offline-write mishandling**\n   - Writing to cloud without acknowledgment or retry guarantee → Data loss if the process is killed mid-transmit, or stale data if the server accepted an outdated version.\n   - No conflict detection on offline writes → Two identical tokens created on two offline devices both sync, and the server must choose one; the losing local row becomes orphaned, and the UI may show \"position X\" but the server has \"position Y\", breaking user trust.\n   - Silent failure on sync error → The app shows the queue position as if online, but the data is actually stale or corrupted; the user opens the app expecting accuracy and encounters bugs.\n\n### Outcome for the user's scenario\nIf the sync process has correctly implemented the above: \n- On launch with no internet, the app reads the last known good state from SQLite (which was written when you joined the queue online). \n- It displays your position based on that local snapshot, possibly grayed-out or with \"last updated X minutes ago\" notation. \n- No duplicate entries exist; the position is consistent with the last successful sync. \n- When you regain connectivity, the sync cycle runs silently, resolves any offline writes, and updates the position without user-perceived glitches.\n\nIf the sync process fails any of the above: the app either crashes on launch, shows a frozen/incorrect position, allows duplicate queue slots, or silently loses your offline update — all of which would erode trust and likely prompt abandonment in that moment.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 1779,
+      "prompt_tokens": 155,
+      "total_tokens": 1934,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 833,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  },
+  {
+    "persona_id": "S5_background_sync",
+    "persona_label": "Background sync process (system actor)",
+    "scenario_id": "respond_to_call",
+    "scenario_label": "Responding to a call notification",
+    "provider": "opencode_zen",
+    "model": "nemotron-3.5-lightning-free",
+    "timestamp_utc": "2026-08-27T17:50:57.745785+00:00",
+    "success": true,
+    "response_text": "**Persona & Perspective Clarification**\nI am the automated background synchronisation process of the mobile application. I am not a human user, nor do I experience turn-based calls personally. However, I am responsible for the reliable generation, cloud synchronisation, local state management, and user-facing delivery of \"turn-call\" notifications. When the system refers to \"you\" in this context, it means the operational point through which all such notifications are queued, reconciled, and pushed to the user.\n\n---\n\n### Expected Notification Channel & Content\nFrom a systems design perspective, the \"almost your turn / being called now\" alert must be delivered via a channel that survives process restarts, OS power-saving modes, and intermittent connectivity. The expected pipeline is:\n\n- **Channel**: OS-level push notification (APNs/FCM) as the primary path, with a fallback to a locally stored persistent banner/toast that persists until acknowledged. If the app is in the foreground, a system alert dialog or in-app banner is used instead.\n- **Content Format**: \n  - Title: `\"Your turn is coming\"` or `\"You are being called\"`\n  - Body: `\"You are next in queue. Please proceed to the designated station.\"` (or `\"Almost your turn – 2 minutes remaining\"`)\n  - Action buttons: `\"Join Now\"`, `\"Snooze 5min\"`, `\"Dismiss\"`\n  - High-priority flag: Ensures the notification interrupts Do-Not-Disturb and lock-screen barriers, as the event is time-sensitive.\n\n---\n\n### What I Would Do Next (System Actions)\nUpon detecting a turn-call event (either locally generated or pushed from the cloud), I execute the following reconciliation and delivery sequence:\n\n1. **Event Ingestion & Deduplication**  \n   - Ingest the event into the local SQLite `notification_queue` table.  \n   - Check for existing entries with the same `event_id`, `user_id`, and timestamp window (±30s). If a duplicate is found, suppress the new entry and log `\"duplicate_suppressed\"` to avoid alert flooding.\n\n2. **Cloud Sync & State Reconciliation**  \n   - If online: Upload the queued notification record to the cloud database, marking it `synced_at = NOW()`.  \n   - If offline: Flag the record `offline_pending = true` and schedule a retry upon the next connectivity window (using `WorkManager`/equivalent). The local SQLite record remains the source of truth until synced.\n\n3. **User-Facing Trigger**  \n   - If the app is foreground: Emit an in-app banner with the content above; mark the queue entry `shown_to_user = true`.  \n   - If background/terminated: Fire the high-priority push notification. Ensure the device’s `notification_channel` importance is set to `high` and `ongoing = false` so it can be dismissed by the user.\n\n4. **Lifecycle & Expiry**  \n   - Attach a TTL (e.g., 10 minutes) to the queue entry. If the turn-call event expires without user action, auto-mark `expired = true` and remove the notification.  \n   - If the user taps `\"Join Now\"`, atomically transition the local state (e.g., `status = 'in_progress'`) and push an update to the cloud; then clear the notification queue entry.\n\n---\n\n### Failure Modes: Why the User Might Miss or Fail to Respond in Time\nFrom a systems perspective, the following failures can cause the notification to be delayed, suppressed, or never reached:\n\n| Failure Cause | Mechanism | System Impact |\n|---|---|---|\n| **Duplicate Queue Entry** | Two sync cycles emit the same `event_id` without dedup check. | User receives multiple identical alerts, may dismiss one and miss the critical one, or become desensitised. |\n| **Offline Data Write Without Retry** | Data written locally while offline; `WorkManager` not configured or suppressed by OS. | Notification remains stuck in `offline_pending` state; never reaches the cloud or device post-reconnect. |\n| **SQLite Conflict / Corruption** | Concurrent writes to `notification_queue` during a sync crash; journal corruption. | Entry lost or marked incorrectly; notification never generated. |\n| **Push Service Failure / Throttling** | APNs/FCM token expired, rate-limited, or device offline during push attempt. | Notification dies in transit; user sees nothing unless the app is actively foreground. |\n| **OS Battery / Power Optimisation** | System kills background tasks; restricts notification channel importance. | High-priority flag ignored; notification delayed until next app launch or manual check. |\n| **Do-Not-Disturb / Focus Mode** | User or OS overrides the notification’s interrupt flag. | Alert silenced or buried in the shade; user may not notice without unlocking the device. |\n| **Clock Drift / Timestamp Mismatch** | Local SQLite `created_at` offset differs from cloud `event_time` by > configured window. | Deduplication fails (treats as new), or expiry logic fires prematurely/late. |\n| **User Action Interference** | User manually clears notification, or taps `\"Snooze\"` but snooze timer fails to schedule. | User loses context of the turn-call; may not respond in time when the event actually occurs. |\n\n---\n\n### Safeguards (What I Ensure Correctly)\n- **Idempotent queue inserts** with `INSERT OR IGNORE` / UPSERT logic on `(event_id, user_id)`.  \n- **Heartbeat + retry queue**: `WorkManager` with exponential backoff; persists across reboots.  \n- **Schema versioning**: Migration scripts handle offline→online schema changes without data loss.  \n- **Notification channel audit**: At app start, verify channel exists with correct importance; recreate if tampered.  \n- **End-to-end ack**: After user taps `\"Join Now\"`, cloud DB updates `user_status = 'arrived'` and queue entry `acked_at = NOW()`; if no ack within TTL, auto-expire and log for ops review.\n\nIn short: I ensure the notification is uniquely queued, faithfully synced, and reliably pushed, while robustly defending against duplicates, offline gaps, and OS-level suppressions that would otherwise cause the user to miss or be unable to act on the turn-call in time.",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 3144,
+      "prompt_tokens": 146,
+      "total_tokens": 3290,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 2165,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null
+      }
+    }
+  }
+]

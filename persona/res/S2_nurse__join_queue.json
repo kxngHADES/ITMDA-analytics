@@ -1,0 +1,31 @@
+{
+  "persona_id": "S2_nurse",
+  "persona_label": "Clinic nurse",
+  "scenario_id": "join_queue",
+  "scenario_label": "Joining a queue for the first time",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:22:49.848486+00:00",
+  "success": true,
+  "response_text": "### Opening the App – First Impressions\nI walk up to the clinic’s kiosk or open the tablet app on my shift phone. The screen lights up to a clean, high-contrast dashboard—nothing artsy, just clear information hierarchy. I expect the first thing to be a prominent **\"Join Queue\"** button, maybe with a small line of text below it: *\"Current wait: ~15 min\"* or *\"Clinic now open – 8 patients ahead.\"*\n\nGiven my role, I don't just want a number. I want to see at a glance who needs priority. So I’m looking for subtle but unmistakable icons next to each slot or name: a gray hair silhouette for elderly patients, a pregnancy symbol, a wheelchair or accessibility icon, and perhaps a red \"URGENT\" badge for cases the system or staff have already flagged. The color palette is likely muted greens, blues, and grays, with red or orange reserved for urgency—standard enough that I don’t have to think about it.\n\n### What I Expect to See\n- **My position in line:** \"You are #9 in queue.\" It updates in real time as people join or are called back.\n- **Wait time estimate:** A dynamic countdown or \"average 12 min remaining\" that shifts as the nurse ahead of me is seen.\n- **Patient flags at a glance:** Names or avatars with small, consistent icons indicating pregnancy, age group, or disability. I shouldn't have to click into a profile to know someone needs extra time or a private station.\n- **A \"Flag Urgent\" action:** A button or swipe gesture that lets me mark a new arrival as urgent (e.g., chest pain, severe bleeding, acute distress). This doesn't jump them to the front automatically—it just tags their record so the attending knows to prioritize them clinically.\n- **Clear, legible typography:** No squinting. If I'm glancing between a patient and the screen while managing other tasks, the info has to register in a second.\n\n### The \"Aha!\" Moment – Successfully Joined the Queue\nI tap **\"Join Queue.\"** Within a second, the button changes or a toast appears: *\"You're now #9. Estimated wait: 14 minutes.\"* My entry appears at the bottom of the list, highlighted or labeled \"You.\" Next to my slot, the same icons show up—maybe I'm marked as \"expecting\" or have a disability flag from my pre-registration, and the app carries that forward automatically.\n\nWhat confirms it for me:\n- The position number updates if someone joins ahead of me.\n- The wait time shifts slightly, confirming the system is live.\n- The urgency flag icon is either already there (from my digital intake form) or I can tap it without error.\n- No error pop-ups, no \"try again\" screens, and the \"Take Next Patient\" button for the clinician stays active and responsive.\n\nThat’s the confidence moment: the app feels like a living list, not a static form. I can look away and know exactly where I stand, and the clinician can look up and see at a glance who needs what.\n\n### What Would Confuse, Worry, or Stop Me\n- **Unclear entry:** The tap registers, but the queue position doesn't change, or it says \"Join Queue\" still. Did it work? Did I double-tap? Is the server lagging? I'd hesitate to trust it with patients' safety.\n- **Missing or confusing flags:** If I see a patient with a pregnancy icon but it's just a generic \"info\" symbol, or if elderly/disability icons look the same as regular patient markers, I can't make quick prioritization calls. That's a real workflow blocker.\n- **No wait time or a frozen estimate:** If the wait says \"~5 min\" but three people have been called back already, or it never updates, I'm second-guessing the whole system.\n- **Poor contrast or tiny text:** I'm often glancing from screen to patient to chart. If I have to lean in or squint, it slows me down and feels unprofessional for a public health setting.\n- **No obvious way to flag urgency:** If a patient walks in with clear distress and there's no one-tap \"urgent\" tag, or if I have to navigate three menus to mark it, that's a friction point I'll remember—and potentially a safety concern.\n- **Language or terminology that doesn't match our clinic:** If the app uses clinical jargon I don't use, or labels things differently than our printed intake forms, I'll double-check if it's actually synced to our system.\n\n### Bottom Line\nI want this app to feel like a transparent, real-time extension of the physical clipboard at the front desk. If, on first use, it shows me where I am, how long I'll wait, who needs what, and lets me flag urgency without thinking—then I'm confident it'll work during a busy shift. If it's vague, glitchy, or hides the info I need behind extra taps, I'll worry it'll slow down patient care rather than help.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 2019,
+    "prompt_tokens": 150,
+    "total_tokens": 2169,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1015,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

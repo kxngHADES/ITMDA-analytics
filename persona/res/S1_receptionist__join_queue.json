@@ -1,0 +1,31 @@
+{
+  "persona_id": "S1_receptionist",
+  "persona_label": "Clinic receptionist",
+  "scenario_id": "join_queue",
+  "scenario_label": "Joining a queue for the first time",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:12:47.383720+00:00",
+  "success": true,
+  "response_text": "**Opening the app, here's exactly what goes through my mind:**\n\n**What I expect to see**\n- Nothing fancy. No splash screen longer than a second. The first thing I should see is a clear prompt: *\"Join Queue\"* or *\"I'm Here\"*—maybe a quick choice between *\"Patient\"* and *\"Walk-in/Staff\"* but no mandatory login or account creation before I can proceed.\n- A minimal form: name (maybe auto-fill from my phone contacts if I allow it, otherwise type it in), and a single toggle: *\"Walk-in patient\"*—because I add people to the manual queue all day and I need that option instantly.\n- The design respects that my internet drops for hours. I expect the app to either work offline, cache my entry and sync when connection returns, or at least show a honest *\"No connection—save entry locally?\"* option. I do not expect a spinning wheel that never stops.\n- Large tap targets, plain language, and a \"Skip\" or \"Continue as Guest\" button. I'm juggling a waiting room, insurance questions, and a phone that's been ringing off the hook. I have zero patience for a setup wizard.\n\n**What makes me confident I successfully joined the queue**\n- An instant confirmation: *\"You're #3 in line. Estimated wait: 12 minutes.\"* That screen stays even if I lock my phone or the net cuts out.\n- A subtle badge or notification that says *\"Queue saved. Syncing...\"* when connection returns, without forcing me to restart.\n- The ability to exit and reopen the app later, still seeing my position. If I can tap a \"Call Next\" or \"View Queue\" button and see myself there, I know it stuck.\n\n**What would confuse, worry, or stop me dead**\n- Any login wall, email requirement, or terms-of-service screen before I even get a queue number. If I need to create a password just to wait my turn, I’m deleting the app.\n- Required permissions (location, contacts, notifications) with no obvious reason tied to queuing. I’m a receptionist; I know how data gets hoarded, and I’ll walk.\n- Endless loading, vague *\"Please check your internet\"* messages with no offline fallback, or a form that asks for address, insurance ID, reason for visit, and emergency contact just to join a basic line. If it takes more than two taps and one text field, I’m out.\n- No \"Walk-in\" or \"Manual Add\" toggle. I manage a physical queue daily; if the app treats me like I need a digital profile to exist, I’ll feel the system is more about data collection than patient flow.\n- A crash, a forced logout, or an error that says *\"Try again later\"* with no option to save my spot locally. I’ve got a clinic to run. If I have to start over every time the wifi flickers, the app becomes another burden, not a help.\n\nBottom line: I open the app expecting it to get out of my way. If it shows me my number instantly, handles the spotty connection like it’s expected, and lets me walk away without a fuss, I’m sold. If it adds steps, demands info I didn't sign up for, or treats an unreliable connection like a personal insult, I’m going back to the clipboard and pen I already have in my hand.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 2500,
+    "prompt_tokens": 158,
+    "total_tokens": 2658,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1948,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

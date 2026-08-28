@@ -1,0 +1,31 @@
+{
+  "persona_id": "P4_pregnant_patient",
+  "persona_label": "Pregnant patient",
+  "scenario_id": "join_queue",
+  "scenario_label": "Joining a queue for the first time",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:44:58.022624+00:00",
+  "success": true,
+  "response_text": "### Walking Through the App (First-Time, 7 Months Pregnant)\n\nI'm standing just outside the clinic doors, already feeling the pull of gravity at 7 months, and my lower back is already complaining. I opened this app because I really don't want to join the physical queue inside. I want to wait in the car or go home and get a nudge when it's almost my turn. Here's what goes through my mind, step by step:\n\n**1. App Launch & First Screen**\n- The app opens. I half-expect a splash screen, but I'd really prefer it jumps straight to something useful.\n- If there's onboarding, I hope it's brief. I don't have patience for a 5-screen tutorial when I'm uncomfortable and just want to check in.\n\n**2. Clinic Selection / Location**\n- Either the app auto-detects \"Local Public Health Clinic\" via GPS, or I tap a simple \"Select Clinic\" button.\n- I see a list or a map. I look for the one I've been going to for my prenatal visits. If there are multiple campuses, I need a clear way to pick the right one without guessing.\n\n**3. Queue Joining Options**\n- This is the critical moment. I expect to see something like:\n  - \"Join Queue\"\n  - Maybe a toggle or two options: *\"Wait inside clinic\"* vs *\"Wait remotely / in car\"* vs *\"Get notified when called\"*\n- I immediately look for the remote/home option. If I only see a \"Take a Number\" button that says \"Report to counter now,\" I'm already worried I've picked the wrong app or the wrong mode.\n\n**4. Confirmation & Position**\n- After I tap the remote option, the screen changes. I expect to see:\n  - My name or a patient ID (maybe just a number)\n  - My position in line (e.g., \"You are #14 of 25\")\n  - A clear statement: *\"You're now in the remote queue. We'll notify you when you're up.\"*\n  - Maybe a countdown or \"Estimated wait: 20 min\"\n- If the app just says \"You're in the queue\" with no position, no remote option, or no estimated wait, I'm left guessing. That uncertainty is stressful when I'm already uncomfortable.\n\n**5. Notification Setup**\n- I'd expect the app to ask: *\"Allow notifications so we can tell you when to head in?\"* or *\"Add to contacts/alerts?\"* I need to know: Does my phone buzz? Does the app ping? Is there a text message backup? If I'm at home or in the car, I need to know how I'll be called.\n\n---\n\n### What Would Make Me Confident I Successfully Joined\n- A clean, immediate confirmation screen that shows: **\"You're #X in the remote queue for [Clinic Name]. You'll be notified when it's your turn.\"**\n- A visible option to view estimated wait time or my position at any later moment.\n- A working \"Notify me\" prompt that, once allowed, gives me a clear signal (banner, sound, lock screen alert) when I'm, say, 2–3 people away.\n- The ability to see my status later in a \"My Queue\" or \"Upcoming\" section, in case I close the app and need to check back.\n\n### What Would Confuse, Worry, or Stop Me\n- **No remote/wait-at-home option visible.** If the only button is \"Join on-site queue\" or \"Take a number at the desk,\" I feel the app missed my core need. I'd likely close it and try to find seating or just stand in the lobby despite the pain.\n- **Vague status.** \"You're in the queue\" with no number, no wait time, and no way to tell if I'm actually enrolled. Is #14 me? Is the queue moving? I'd keep my phone glued to the screen, which defeats the purpose.\n- **Permission prompts at the wrong time.** If the app bombards me with location, notification, and privacy pop-ups *after* I've already waited 5 minutes trying to join, I'll feel frustrated and might abandon the process.\n- **Technical glitches.** A spinning loader that never resolves, or an \"Error joining queue\" message with no next steps. Given my physical state, I don't have the patience to troubleshoot or retry multiple times.\n- **Unclear notification method.** If the app says \"You'll be notified\" but never explains *how* (app badge only? sound? text? email?), I'll worry I'll miss my turn, end up waiting unnecessarily, or worse, someone else gets called before me because I didn't get the alert.\n- **Forced to stay signed in/keep app open.** If the app won't let me close it or run in the background without losing my spot, I can't actually wait at home or in the car. I'd feel tethered to the phone, which defeats the whole purpose.\n\n### Bottom Line\nI want this app to feel like a genuine alternative to standing in a hallway while eight months pregnant. If the first screen clearly gives me a remote/wait-at-home choice, confirms my spot with a simple number/estimate, and lets me opt into a clear notification system, I'll feel relieved and confident. If it treats me like just another person taking a number at the desk, I'll feel dismissed, stressed, and probably just go find a chair.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 2042,
+    "prompt_tokens": 145,
+    "total_tokens": 2187,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 971,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

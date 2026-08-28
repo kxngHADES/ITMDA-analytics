@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Field Notes — Persona Walkthroughs</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="paper">
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="topbar-title">
+      <span class="topbar-mark">✦</span>
+      <div class="topbar-heading">
+        <h1>Field Notes</h1>
+        <p>Persona walkthroughs of the clinic queue app</p>
+      </div>
+    </div>
+
+    <div class="topbar-search">
+      <input type="search" id="searchInput" placeholder="Search personas, scenarios, or words in the text…" autocomplete="off" />
+      <span id="searchCount" class="search-count"></span>
+    </div>
+
+    <div class="topbar-themes" role="group" aria-label="Reading theme">
+      <button class="theme-btn" data-theme-choice="paper" title="Paper">Paper</button>
+      <button class="theme-btn" data-theme-choice="sepia" title="Sepia">Sepia</button>
+      <button class="theme-btn" data-theme-choice="dusk" title="Dusk">Dusk</button>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <aside class="toc" id="toc" aria-label="Table of contents">
+      <div class="toc-inner" id="tocInner"></div>
+    </aside>
+
+    <button class="toc-toggle" id="tocToggle" aria-label="Toggle contents">☰ Contents</button>
+
+    <main class="page-wrap">
+      <article class="page" id="page">
+        <!-- filled by index.js -->
+      </article>
+
+      <nav class="page-nav">
+        <button id="prevBtn" class="nav-btn" aria-label="Previous">← Previous</button>
+        <div class="page-progress">
+          <span id="progressLabel"></span>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <button id="nextBtn" class="nav-btn" aria-label="Next">Next →</button>
+      </nav>
+    </main>
+
+  </div>
+</div>
+
+<script src="res/data.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

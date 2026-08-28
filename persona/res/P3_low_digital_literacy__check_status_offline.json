@@ -1,0 +1,31 @@
+{
+  "persona_id": "P3_low_digital_literacy",
+  "persona_label": "Low-digital-literacy patient",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:37:46.180054+00:00",
+  "success": true,
+  "response_text": "**What I expect the app to show me:**\nSince my phone has no internet right now, I don't expect it to load a live number or map. I'd opened the app at the clinic before, so I'd expect it to simply open to the last screen I saw – maybe a simple icon of a person standing in line, or a small badge with a number or colour that I was told meant \"you're in the queue.\" I'm not used to blocks of text, so I'd be looking for familiar pictures or colours rather than reading long instructions. I'd half-expect the app to just show me that same screen, or maybe a gentle \"offline\" symbol, because I don't know how apps work without internet, and I'm already nervous it might have forgotten I'm in line.\n\n**What would reassure me that my place is still safe:**\nIf the app opens and shows the same simple icon/colour I saw before, without asking me to sign in again or type my name, I'd feel relieved. A small, clear message – maybe just a picture of a tick or a \"saved\" icon – would tell me my spot is saved in the phone's memory. The fact that it didn't make me fill out any new forms, didn't ask for my ID number again, and didn't panic with error messages would go a long way. If it even had a simple voice-note style alert (since I'm used to WhatsApp voice notes) saying \"your place is saved,\" I'd feel completely at ease.\n\n**What would make me distrust or abandon the app right now:**\nIf the app demands I register or fill in a long form before it'll show me anything, especially asking for personal details I'm nervous about sharing without face-to-face help, I'd feel anxious and likely close it. Pop-ups with English text I can't fully read, or prompts asking for payment, \"verification,\" or extra permissions (like my contacts or location) would make me think it's not safe. A blank screen, a loud error message, or anything that makes me feel I've lost my place permanently would make me want to stop using it altogether. I'd probably go back to waiting outside the clinic the old-fashioned way, and I'd tell friends the app isn't good for people like me who aren't comfortable with online forms.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1602,
+    "prompt_tokens": 152,
+    "total_tokens": 1754,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1257,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "persona_id": "S1_receptionist",
+  "persona_label": "Clinic receptionist",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:16:15.944249+00:00",
+  "success": true,
+  "response_text": "**What the app should show:**  \nA cached, up-to-date snapshot of my queue position—last refreshed before loss of connection—displayed as a stable number (e.g., \"Position 14 of 32\") with a clear timestamp and an \"offline\" indicator. It should also show whether my spot is actively held by the clinic's system and offer a simple, one-tap option to confirm my place with a receptionist if needed, without forcing me back into the app flow.\n\n**What would reassure me that my place is safe:**  \nThe position number matches exactly what it was when I joined and left, with a \"held\" or \"confirmed\" status visible even offline. A simple note like \"Your spot is reserved; see reception on arrival\" would confirm the clinic’s manual system has me in the queue, which I know they do for exactly these connectivity gaps. No reset, no disappearance, no forced re-entry.\n\n**What would make me distrust or abandon the app:**  \nMy position resets to the end of the queue, the app demands immediate internet to display anything, or it glitches/loops without explaining why I’ve been removed. Being forced to re-add my details, wait for a reconnection that may take hours, or receive no offline fallback would feel like the app is creating extra work rather solving it—especially frustrating given I’m already waiting elsewhere and the clinic’s internet is known to drop for hours. If the app can’t gracefully degrade to a simple \"you're in line\" status, I’ll stop using it entirely and rely on the receptionist’s manual list, which at least doesn’t pretend to offer something it can’t deliver offline.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1802,
+    "prompt_tokens": 158,
+    "total_tokens": 1960,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1711,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

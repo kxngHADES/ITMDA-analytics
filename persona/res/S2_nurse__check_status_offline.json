@@ -1,0 +1,31 @@
+{
+  "persona_id": "S2_nurse",
+  "persona_label": "Clinic nurse",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:24:51.225166+00:00",
+  "success": true,
+  "response_text": "**What I expect the app to show me:**\n- My current queue position (e.g., \"5th in line\") as it was when I last had signal, with a clear \"last updated\" timestamp.\n- An estimated wait time based on the clinic's current average service rate, displayed at a glance without needing to open records.\n- Visual priority flags (e.g., distinct icons or color cues) for patients who are elderly, pregnant, or have a disability, so I can see who has right-of-way if the queue shifts.\n- My token/registration number preserved on screen, and a simple status line like `\"Clinic open · Now serving: [Name] · You're next: Yes / No\"`.\n- Since I'm offline, I expect the app to show my **last cached queue state**, not a blank error screen or a forced logout.\n\n**What would reassure me that my place is still safe:**\n- A visible `\"Queue confirmed · Token X preserved\"` or `\"Online at [time/date] · Position saved locally\"` message that confirms my spot isn't tied to a constant live connection.\n- The position number staying exactly where it was when I left, with no automatic reset, timeout, or \"inactivity expired\" notice.\n- A clear option or indication that the app stores my queue data locally on the device and will auto-sync when connectivity returns.\n- No requirement to re-check-in, scan a QR code again, or confirm my identity just to keep my place.\n\n**What would make me distrust or abandon the app:**\n- Losing my position entirely, or being told I've been \"removed due to inactivity\" just because I stepped away from the phone.\n- Being forced to re-join the queue from the beginning, or having the app prompt me to `\"Refresh connection\"`/`\"Go online\"` in a way that feels like it’s discarding my cached spot.\n- A blank screen, full-screen \"No Internet\" error, or a spinning loader that never resolves, especially if it covers my position.\n- Position numbers that jump, flicker, or change without explanation while offline.\n- Pop-ups or modals that demand I stay on the screen or keep the app foregrounded to \"hold my spot,\" rather than letting the data sit locally.\n- No transparency about how offline data is handled, or a privacy notice that feels vague about whether my queue status disappears when the app closes.\n\nIn short: I expect the app to treat my queue position as **device-persistent**, not connection-persistent. If it shows me my spot, keeps the priority flags visible at a glance, and confirms that my place is saved locally until the clinic system syncs back online, I'll feel confident and stay in the app. If it treats my loss of signal as a reason to eject me from the queue, I'll delete it immediately and find a clinic that uses a token system that actually works offline.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1597,
+    "prompt_tokens": 150,
+    "total_tokens": 1747,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1087,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

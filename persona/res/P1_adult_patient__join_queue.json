@@ -1,0 +1,31 @@
+{
+  "persona_id": "P1_adult_patient",
+  "persona_label": "Adult patient (25-60, smartphone familiar)",
+  "scenario_id": "join_queue",
+  "scenario_label": "Joining a queue for the first time",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:06:15.718869+00:00",
+  "success": true,
+  "response_text": "### Opening the App – First Impressions\nI tap the icon on my home screen. It’s called *\"Clinic Queue SA\"* – I saw it shared in a community WhatsApp group for my area in Tshwane. The splash screen is quick, no animated intro that overstays its welcome. I’m taken straight to a simple, mostly-white screen with the clinic name at the top (“Diepkloof Community Health Centre”), a prominent green button that says **\"Join Queue\"**, and below that, a small line of grey text: *\"Check your position from anywhere.\"*\n\nBecause I’m on a mid-range Android (a Samsung A14 I bought cash-sparingly last year), the screen renders instantly – no lag, no \"Unfortunately, the app has stopped.\" The typography is clear, the buttons are big enough for my thumb to hit without zooming in. There’s a subtle \"data saving\" badge in the corner, which I appreciate; I know my mobile data sometimes drops when I’m moving between the taxi rank and the clinic.\n\n### What I’d See to Feel I’d Successfully Joined\nA couple of things happen, and I’d feel confident if:\n\n1. **The button changes instantly.** Tap \"Join Queue\" and it morphs into a grey box reading **\"You're in the queue!\"** with my position number – something like *\"Position #47 out of ~120\"* – and an estimated wait time: *\"~52 minutes\"* (or *\"~1h 15min\"* if it’s busy). \n2. **My phone vibrates or a short chime plays.** Even with the ringer off, a gentle haptic pulse lets me know the command registered, especially important since I’m often juggling the phone in one hand and a mask/ID in the other.\n3. **A minimal notification pops into my shade:** *\"Queue #47 active. Tap to view updates.\"* I don’t have to stay on the screen. I can lock the phone and still see the position update in the notification, or pull it down later to see if my number moved.\n4. **The wait time feels realistic.** If it says 45 minutes and the app has a small \"live\" counter that ticks down slowly, I trust it. If it just says \"Estimate based on average\" that’s fine too, as long as it’s not a static \"5 mins\" when the room is clearly packed.\n\n### What Would Confuse, Worry, or Stop Me\nAnd here’s where it could go wrong, real quick:\n\n- **The spinner that never ends.** If tapping \"Join Queue\" just shows a circular loader that spins for 5+ seconds before anything happens, I’m out. On a mid-range phone with flaky data, slow starts feel like a crash. I’d assume the clinic’s backend is down or the app’s broken, and I’d revert to the physical ticket machine outside.\n- **\"Please enable location to find your nearest clinic.\"** I’m fine with a one-time prompt, but if the app demands \"Allow location all the time\" or won’t let me join without GPS turned on—and my data drops mid-prompt—I’d feel tracked unnecessarily. I’d probably abandon the join attempt.\n- **A mandatory registration form before I can join.** Asking for full name, ID number, email, and a password before I even see if I’m in the queue feels like too much friction for a first-time, impatient user. I’d expect a \"quick join\" option: maybe just phone number or nothing more than a \"proceed as guest\" toggle.\n- **No clear \"you’re in\" confirmation.** If after tapping the button the screen just refreshes to the same view, or shows a generic \"System busy, try again later\" with no position number, I’d have no idea if I’m patient #1 or #100. I’d likely just queue physically instead.\n- **Data drops right after I join.** If the app successfully says \"You're in position #47\" but then loses connection and either closes or shows a blank \"Reconnecting...\" screen, I’d panic. I’d worry I’m now in the queue but can’t prove it, or that I’ve been double-booked. The app should cache my position locally so I can at least see it offline, then sync when data returns.\n- **Language or design that feels exclusionary.** The clinic serves a multilingual community. If the app is only in English with no Zulu/Sotho toggle, or if the UI uses technical jargon (\"Token allocation protocol v3.2\") instead of plain \"You're number 47, you're next when your number is called,\" I’d feel the clinic is tech-for-tech's-sake rather than patient-centric.\n\n### Bottom Line\nI’d feel confident the moment I see **a clear position number + estimated wait + a persistent notification I can check without staying in the app.** I’d walk away, do errands, maybe grab a coffee, and peek at the notification every 15 minutes. If any of the above friction points kick in—especially a mandatory sign-up, a never-ending loader, or a loss of data right after I join—I’d likely close the app and join the physical queue, because at that point the \"digital\" part is adding stress instead of saving my morning.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 2303,
+    "prompt_tokens": 160,
+    "total_tokens": 2463,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1269,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

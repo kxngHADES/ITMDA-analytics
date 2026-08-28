@@ -1,0 +1,31 @@
+{
+  "persona_id": "S3_clinic_manager",
+  "persona_label": "Clinic manager",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T17:33:28.135568+00:00",
+  "success": true,
+  "response_text": "### What you expect the app to show\nEven without an internet connection, you'd reasonably expect the app to display your **last-known queue position** and an **estimated wait time** based on the data it had when you were last online. Ideally it would show something like:\n- `\"Position: #14 | Last updated: 2:12 PM | Estimated wait: ~25 min\"`\n- A clear note that the data is cached locally and will refresh once connectivity returns.\n- Your ticket/queue number, name, or ID tied to that position, so the system knows who you are even offline.\n\nThe key expectation is **graceful degradation**: the app doesn't go completely blank or demand a connection before showing anything useful. It should respect that you've already been admitted to the system and just show you the most recent stable state.\n\n### What would reassure you that your place is still safe\nYou'd feel confident your spot is preserved if the app explicitly confirms:\n- **\"Your queue position is saved on the server and will hold for [X hours/minutes].\"** (or until the clinic closes)\n- **\"Leaving the clinic or going offline does not reset your place.\"**\n- A visible **\"Hold active until [time/date]\"** indicator, or a setting you enabled saying \"Save position while away.\"\n- Assurance that your identifier (ticket number, QR code, registered phone/ID) is permanently linked to that spot in the clinic's backend, not just a local app flag that could vanish.\n\nIf the app says \"Your place is saved. Sync when online\" or shows a timestamp of when your position was locked in, that's a strong signal the system is designed for exactly this scenario.\n\n### What would make you distrust or abandon the app\nYou'd quickly lose trust or stop using the app if:\n- The screen goes blank, shows a generic \"No internet connection\" error, or refuses to open the queue screen at all.\n- There's **no cached data**, or the app acts as if you're starting from scratch.\n- It **doesn't explain** whether your position is kept, lost, or needs re-registration.\n- You've had previous experiences where going offline or closing the app reset your spot, making you fear the same will happen now.\n- The app crashes, loops, or shows an alarming warning like *\"Queue session expired. Please rejoin.\"*\n- There's **no offline help, FAQ, or human contact option** to verify your status without data.\n\nIn short: you'd tolerate a stale readout, but you'd walk away if the app treats being offline as a reason to forget you exist.\n\n### What good design would look like\nA clinic-queue app built for real-world use would:\n1. **Cache your position locally** the moment you join, then sync quietly in the background.\n2. **Guarantee hold times** (e.g., 2–4 hours, or until closing) and surface that clearly.\n3. **Work offline** for core info: position, estimated wait, hold status, and a \"call when ready\" toggle.\n4. **Communicate status transparently** whether online or off, with plain-language updates.\n5. **Offer a fallback**—SMS, USSD, a website, or a reception kiosk—if the app can't reach the server.\n\nIf your app does those things, you'd check it, sigh in relief, and keep waiting elsewhere without a second thought. If it doesn't, this is exactly the moment it loses users.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1397,
+    "prompt_tokens": 133,
+    "total_tokens": 1530,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 759,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}

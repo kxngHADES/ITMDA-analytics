@@ -1,0 +1,31 @@
+{
+  "persona_id": "P1_adult_patient",
+  "persona_label": "Adult patient (25-60, smartphone familiar)",
+  "scenario_id": "check_status_offline",
+  "scenario_label": "Checking queue position after losing signal",
+  "provider": "opencode_zen",
+  "model": "nemotron-3.5-lightning-free",
+  "timestamp_utc": "2026-08-27T16:09:41.270533+00:00",
+  "success": true,
+  "response_text": "**What I expect the app to show:**\nA clean offline state that respects the data I already have. Instead of a blank wall or a \"No internet\" crash, I expect the app to display my last cached queue position (e.g., \"Position 42 of 120\", \"Est. 28 min wait\"), the time/date it was last updated, and a subtle offline banner. The interface should remain functional-but-read-only, with a \"Refresh when online\" prompt rather than a dead end. Since I'm on a mid-range Android with data that drops occasionally, I've come to expect that the app at least keeps my spot locally until it can sync.\n\n**What would reassure me my place is still safe:**\n- My position number is unchanged and clearly labeled (not \"Loading...\" or \"Resetting\")\n- A timestamp like \"Last updated: 8:14 AM\" or \"Seen on server: 15 min ago\" tells me the system still tracks me\n- An explicit \"Cached data from earlier today\" or \"Offline mode: your spot is saved\" message\n- No requirement to re-register, re-verify, or start over just because I'm offline\n- A simple pull-to-refresh that gracefully handles the reconnection without losing my spot\n\n**What would make me distrust or abandon the app right now:**\n- A blank screen, \"No data available,\" or an error toast that doesn't explain *why* or *what happens next*\n- My position resetting to \"1\" or disappearing entirely just because I'm offline\n- The app crashing, force-closing, or demanding I log in/verify again mid-offline\n- A hard \"Connection required\" wall that strips all queue info with no cached fallback\n- Having to re-join the queue from scratch, or seeing a message that I've been \"removed due to inactivity\"\n- No indication of when my data was last synced, or an ambiguous \"try again later\" with no timeline\n\nGiven my experience with public clinic systems in Gauteng, I'd give the app the benefit of the doubt if it at least *showed* me something useful offline. But if it treats being offline as a total blocker, or worse, erases my spot—I'd immediately switch to calling the clinic directly or showing up in person, and I'd start looking for a more reliable alternative next time.",
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1530,
+    "prompt_tokens": 160,
+    "total_tokens": 1690,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1144,
+      "rejected_prediction_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    }
+  }
+}
